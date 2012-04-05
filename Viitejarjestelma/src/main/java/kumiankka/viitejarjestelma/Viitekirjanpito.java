@@ -7,10 +7,10 @@ package kumiankka.viitejarjestelma;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViitteetMuistissa implements Viitehallinta {
+public class Viitekirjanpito implements Viitehallinta {
     List<Artikkeli> viitteet;
     
-    public viitetallennusStub() {
+    public Viitekirjanpito() {
         viitteet = new ArrayList<Artikkeli>();
     }  
     
