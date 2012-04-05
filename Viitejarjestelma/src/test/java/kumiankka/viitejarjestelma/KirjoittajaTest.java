@@ -42,4 +42,25 @@ public class KirjoittajaTest {
     //
     // @Test
     // public void hello() {}
+    
+     @Test
+     public void tyhjaKonstruktoriToimii() {
+         k = new Kirjoittaja();
+         
+         assertNotNull(k);
+     }
+     
+     @Test
+     public void konstruktoriToimii() {
+         k = new Kirjoittaja("Matti", "Luukkainen");
+         
+         assertNotNull(k);
+     }
+     
+     @Test
+     public void ihmiselleLuetavaToString() {
+         k = new Kirjoittaja("Matti", "Luukkainen");
+         
+         assertEquals("M. Luukkainen", k.toString());
+     }
 }
