@@ -3,7 +3,7 @@ package kumiankka.viitejarjestelma;
 
 import java.util.List;
 
-class Viitepalvelu {
+public class Viitepalvelu {
     private Viitehallinta viitehallinta;
     private Viite viite;
     
@@ -16,7 +16,7 @@ class Viitepalvelu {
     }
     
     public void lisaaViitteenYleisetTiedot(String otsikko, int julkaisuvuosi){
-        viite.setJulkaisija(otsikko);
+        viite.setOtsikko(otsikko);
         viite.setVuosi(julkaisuvuosi);
     }
     
@@ -45,5 +45,9 @@ class Viitepalvelu {
         }
         
         return viitelista;
+    }
+
+    public Viite getViite() {
+        return viite;
     }
 }
