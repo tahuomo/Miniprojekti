@@ -4,7 +4,8 @@ public class App {
 
     public static void main(String[] args) {
         KonsoliIO io = new KonsoliIO();
-        Viitepalvelu vp = new Viitepalvelu();
+        Viitekirjanpito vkp = new Viitekirjanpito();
+        Viitepalvelu vp = new Viitepalvelu(vkp);
         TekstiUI ui = new TekstiUI(io, vp);
         
         ui.run();

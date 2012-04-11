@@ -1,14 +1,24 @@
 
 package kumiankka.viitejarjestelma;
 
-class Viitepalvelu {
-    
-    public Viitepalvelu(){
-        
-    }
+import java.util.List;
 
-    String listaaViitteet() {
-        return "";
+class Viitepalvelu {
+    private Viitehallinta viitehallinta;
+    
+    public Viitepalvelu(Viitehallinta viitehallinta){
+        this.viitehallinta = viitehallinta;
     }
     
+    
+
+    public String listaaViitteet() {
+        List<Artikkeli> viitteet = viitehallinta.listaaViitteet();
+        String viitelista = "";
+        for (int i = 0; i < viitteet.size(); i++){
+            viitelista += i + " " + viitteet.get(i).toString() + "\n";
+        }
+        
+        return viitelista;
+    }
 }

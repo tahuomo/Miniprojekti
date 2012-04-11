@@ -23,7 +23,7 @@ public class TekstiUI {
             if (komento.equals("uusi")) {
                 //kysytään tiedot ja lisätään viite palveluun
             } else if (komento.equals("listaa")) {
-                io.tulosta(vp.listaaViitteet());
+                listaaViitteet();
             } else if (komento.equals("auta")) {
                 kerroKomennot();
             }
@@ -37,5 +37,9 @@ public class TekstiUI {
                 + "\tlistaa\t- listaa viitteet\n"
                 + "\tlopeta\t- lopeta ohjelma";
         io.tulosta(komennot);
+    }
+    
+    private void listaaViitteet(){
+        io.tulosta(vp.listaaViitteet());
     }
 }
