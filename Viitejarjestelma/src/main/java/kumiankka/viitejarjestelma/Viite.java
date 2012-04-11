@@ -22,11 +22,42 @@ public class Viite {
         kirjoittajat = new ArrayList<Kirjoittaja>();
     }
 
+    public String getTyyppi() {
+        return tyyppi;
+    }
+
+    public int getAloitusSivu() {
+        return aloitusSivu;
+    }
+
+    public String getJulkaisija() {
+        return julkaisija;
+    }
+
+    public String getLehdenNimi() {
+        return lehdenNimi;
+    }
+
+    public int getLehdenNumero() {
+        return lehdenNumero;
+    }
+
+    public String getOtsikko() {
+        return otsikko;
+    }
+
+    public int getVikaSivu() {
+        return vikaSivu;
+    }
+
+    public int getVuosi() {
+        return vuosi;
+    }   
+    
     public List<Kirjoittaja> getKirjoittajat() {
         return kirjoittajat;
     }
-    
-    
+
     public void setAloitusSivu(int aloitusSivu) {
         this.aloitusSivu = aloitusSivu;
     }
@@ -38,8 +69,8 @@ public class Viite {
     public void setKirjoittajat(List<Kirjoittaja> kirjoittajat) {
         this.kirjoittajat = kirjoittajat;
     }
-    
-    public void lisaaKirjoittaja(Kirjoittaja k){
+
+    public void lisaaKirjoittaja(Kirjoittaja k) {
         this.kirjoittajat.add(k);
     }
 
@@ -62,7 +93,7 @@ public class Viite {
     public void setVuosi(int vuosi) {
         this.vuosi = vuosi;
     }
-    
+
     public String toString() {
         String palautus = tyyppi + ": ";
         for (int i = 0; i < this.kirjoittajat.size(); i++) {
