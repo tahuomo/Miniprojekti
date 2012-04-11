@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Viitekirjanpito implements Viitehallinta {
-    List<Artikkeli> viitteet;
+    List<Viite> viitteet;
 
     public Viitekirjanpito() {
-        viitteet = new ArrayList<Artikkeli>();
+        viitteet = new ArrayList<Viite>();
     }
 
-    public void tallennaViite(Artikkeli a) {
+    public void tallennaViite(Viite a) {
         viitteet.add(a);
     }
 
-    public List<Artikkeli> listaaViitteet() {
+    public List<Viite> listaaViitteet() {
         return viitteet;
     }
 }

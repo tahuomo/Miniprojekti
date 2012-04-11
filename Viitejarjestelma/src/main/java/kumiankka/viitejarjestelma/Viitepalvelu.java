@@ -13,7 +13,7 @@ class Viitepalvelu {
     
 
     public String listaaViitteet() {
-        List<Artikkeli> viitteet = viitehallinta.listaaViitteet();
+        List<Viite> viitteet = viitehallinta.listaaViitteet();
         String viitelista = "";
         for (int i = 0; i < viitteet.size(); i++){
             viitelista += i + " " + viitteet.get(i).toString() + "\n";

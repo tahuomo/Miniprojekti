@@ -13,11 +13,11 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 
-public class ArtikkeliTest {
-    Artikkeli a;
+public class ViiteTest {
+    Viite a;
     ArrayList<Kirjoittaja> kirjoittajat;
     
-    public ArtikkeliTest() {
+    public ViiteTest() {
     }
 
     @BeforeClass
@@ -33,7 +33,15 @@ public class ArtikkeliTest {
         kirjoittajat = new ArrayList<Kirjoittaja>();
         Kirjoittaja k = new Kirjoittaja("Matti", "Luukkainen");
         kirjoittajat.add(k);
-        a = new Artikkeli("Matin Seikkailut", "ACM", "Matin sanomat", 2012, 1, 13, 7, kirjoittajat);
+        a = new Viite("article");
+        a.setLehdenNimi("Matin sanomat");
+        a.setOtsikko("Matin Seikkailut");
+        a.setJulkaisija("ACM");
+        a.setVuosi(2012);
+        a.setLehdenNumero(7);
+        a.setAloitusSivu(1);
+        a.setVikaSivu(13);
+        a.setKirjoittajat(kirjoittajat);
     }
     
     @After
@@ -42,7 +50,7 @@ public class ArtikkeliTest {
     
     @Test
     public void tyhjaKonstruktoriLuoOlion() {
-        a = new Artikkeli();
+        a = new Viite();
 
         assertNotNull(a);
     }
@@ -59,7 +67,7 @@ public class ArtikkeliTest {
     
     @Test
     public void toStringToimii() {
-        String tulos = "M. Luukkainen Matin Seikkailut. Matin sanomat (ACM), "
+        String tulos = "article: M. Luukkainen Matin Seikkailut. Matin sanomat (ACM), "
                     +  "7:1-13, 2012";
         assertEquals(tulos, a.toString());
     }
