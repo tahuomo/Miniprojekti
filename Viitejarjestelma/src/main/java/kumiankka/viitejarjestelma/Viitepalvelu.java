@@ -20,11 +20,12 @@ public class Viitepalvelu {
         viite.setVuosi(julkaisuvuosi);
     }
     
-    public void lisaaArtikkelinTiedot(String lehti, int lehdenNumero, int alkusivu, int vikasivu){
+    public void lisaaArtikkelinTiedot(String lehti, int lehdenNumero, int alkusivu, int vikasivu, String julkaisija){
         viite.setLehdenNimi(lehti);
         viite.setLehdenNumero(lehdenNumero);
         viite.setAloitusSivu(alkusivu);
         viite.setVikaSivu(vikasivu);
+        viite.setJulkaisija(julkaisija);
     }
     
     public void lisaaKirjoittaja(String etunimi, String sukunimi){
