@@ -7,14 +7,14 @@ public class App {
 
     public static void main(String[] args) {
         kaynnistaTietokanta();
-        
+
         KonsoliIO io = new KonsoliIO();
-        Viitekirjanpito vkp = new Viitekirjanpito();
-        Viitepalvelu vp = new Viitepalvelu(vkp);
+        Viitetietokanta vtk = new Viitetietokanta();
+        Viitepalvelu vp = new Viitepalvelu(vtk);
         TekstiUI ui = new TekstiUI(io, vp);
-        
+
         ui.run();
-        
+
         sammutaTietokanta();
     }
 
