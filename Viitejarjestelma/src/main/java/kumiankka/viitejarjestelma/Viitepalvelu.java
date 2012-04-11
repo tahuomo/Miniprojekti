@@ -27,6 +27,12 @@ class Viitepalvelu {
         viite.setVikaSivu(vikasivu);
     }
     
+    public void lisaaKirjoittaja(String etunimi, String sukunimi){
+        Kirjoittaja k = new Kirjoittaja(etunimi, sukunimi);
+        k.setViite(viite);
+        viite.lisaaKirjoittaja(k); 
+    }
+    
     public void tallennaViite(){
         viitehallinta.tallennaViite(viite);
     }
