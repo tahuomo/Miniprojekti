@@ -1,5 +1,6 @@
 package kumiankka.viitejarjestelma;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Viite {
@@ -18,6 +19,7 @@ public class Viite {
 
     public Viite(String tyyppi) {
         this.tyyppi = tyyppi;
+        kirjoittajat = new ArrayList<Kirjoittaja>();
     }
 
     public List<Kirjoittaja> getKirjoittajat() {
@@ -35,6 +37,10 @@ public class Viite {
 
     public void setKirjoittajat(List<Kirjoittaja> kirjoittajat) {
         this.kirjoittajat = kirjoittajat;
+    }
+    
+    public void lisaaKirjoittaja(Kirjoittaja k){
+        this.kirjoittajat.add(k);
     }
 
     public void setLehdenNimi(String lehdenNimi) {
