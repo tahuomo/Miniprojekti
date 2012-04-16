@@ -1,6 +1,5 @@
 package kumiankka.viitejarjestelma;
 
-
 public class TekstiUI {
     private IO io;
     private Viitepalvelu vp;
@@ -27,11 +26,10 @@ public class TekstiUI {
             } else if (komento.equals("auta")) {
                 kerroKomennot();
             }
-
         }
     }
-    
-    private void lisaaViite(){
+
+    private void lisaaViite() {
         String tyyppi = io.lueRivi("Kerro viitetyyppi:");
         vp.teeViite(tyyppi);
         kysyViitteenTiedot();
@@ -39,14 +37,12 @@ public class TekstiUI {
         kysyKirjoittajat();
         vp.tallennaViite();
         io.tulosta("Uusi viite lisättiin!");
-  
-        
-  }
+    }
 
     private void kysyViitteenTiedot() {
         String otsikko = io.lueRivi("Otsikko:");
         int vuosi = io.lueLuku("Julkaisuvuosi:");
-        vp.lisaaViitteenYleisetTiedot(otsikko, vuosi);  
+        vp.lisaaViitteenYleisetTiedot(otsikko, vuosi);
     }
 
     private void kysyArtikkelinTiedot() {
@@ -55,21 +51,25 @@ public class TekstiUI {
         int aloitusSivu = io.lueLuku("Ensimmäinen sivu:");
         int lopetusSivu = io.lueLuku("Viimeinen sivu:");
         String julkaisija = io.lueRivi("Julkaisija:");
-        
+
         vp.lisaaArtikkelinTiedot(lehdenNimi, lehdenNumero, aloitusSivu, aloitusSivu, julkaisija);
     }
 
     private void kysyKirjoittajat() {
         io.tulosta("Anna kirjoittajat, tai anna tyhjä lopettaaksesi");
-        while (true){
+        while (true) {
             String etunimi = io.lueRivi("Etunimi:");
-            if (etunimi.isEmpty()) break;
+            if (etunimi.isEmpty()) {
+                break;
+            }
             String sukunimi = io.lueRivi("Sukunimi:");
-            if (sukunimi.isEmpty()) break;
+            if (sukunimi.isEmpty()) {
+                break;
+            }
             vp.lisaaKirjoittaja(etunimi, sukunimi);
         }
     }
-    
+
     private void kerroKomennot() {
         String komennot = "\tauta\t- näyttää komennot\n"
                 + "\tuusi\t- lisää uusi viite\n"
@@ -77,10 +77,15 @@ public class TekstiUI {
                 + "\tlopeta\t- lopeta ohjelma";
         io.tulosta(komennot);
     }
-    
-    private void listaaViitteet(){
+
+    private void listaaViitteet() {
+        io.tulosta("Viitteet:");
         String viitteet = vp.listaaViitteet();
-        if (viitteet.isEmpty()) io.tulosta("Ei vielä lisättyjä viitteitä");
-        else io.tulosta(viitteet);
+        if (viitteet.isEmpty()) {
+            io.tulosta("Ei vielä lisättyjä viitteitä");
+        } 
+        else {
+            io.tulosta(viitteet);
+        }
     }
 }
