@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kumiankka.viitejarjestelma;
 
 import java.util.ArrayList;
@@ -66,8 +62,17 @@ public class ViiteTest {
     }
     
     @Test
-    public void toStringToimii() {
+    public void toStringToimiiYhdellaKirjoittajalla() {
         String tulos = "article: M. Luukkainen Matin Seikkailut. Matin sanomat (ACM), "
+                    +  "7:1-13, 2012";
+        assertEquals(tulos, a.toString());
+    }
+    
+    @Test
+    public void toStringToimiiUseammallaKirjoittajalla() {
+        kirjoittajat.add(new Kirjoittaja("Arto", "Vihavainen"));
+        
+        String tulos = "article: M. Luukkainen, A. Vihavainen Matin Seikkailut. Matin sanomat (ACM), "
                     +  "7:1-13, 2012";
         assertEquals(tulos, a.toString());
     }
