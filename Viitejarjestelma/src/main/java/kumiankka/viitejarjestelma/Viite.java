@@ -126,7 +126,7 @@ public class Viite implements Serializable {
         for (int i = 0; i < this.kirjoittajat.size(); i++) {
             palautus += this.kirjoittajat.get(i).toString();
             if (i < this.kirjoittajat.size() - 1) {
-                palautus += " , ";
+                palautus += ", ";
             }
         }
         palautus += " " + otsikko + ". " + lehdenNimi + " (" + julkaisija + "), " + lehdenNumero
