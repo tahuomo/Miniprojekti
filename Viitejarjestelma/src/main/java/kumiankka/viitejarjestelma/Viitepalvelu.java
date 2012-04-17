@@ -28,6 +28,23 @@ public class Viitepalvelu {
         viite.setJulkaisija(julkaisija);
     }
     
+    public void lisaaKirjanTiedot(String julkaisija, String osoite, String painos, String sarja) {
+        viite.setJulkaisija(julkaisija);
+        viite.setOsoite(osoite);
+        viite.setPainos(painos);
+        viite.setSarja(sarja);
+    }
+    
+    public void lisaaKonferenssijulkaisunTiedot(String kirjanNimi, String julkaisija, String osoite, String sarja, int aloitusSivu, int lopetusSivu, String organisaatio) {
+        viite.setKirjanNimi(kirjanNimi);
+        viite.setJulkaisija(julkaisija);
+        viite.setOsoite(osoite);
+        viite.setSarja(sarja);
+        viite.setAloitusSivu(aloitusSivu);
+        viite.setVikaSivu(lopetusSivu);
+        viite.setOrganisaatio(organisaatio);
+    }
+    
     public void lisaaKirjoittaja(String etunimi, String sukunimi){
         Kirjoittaja k = new Kirjoittaja(etunimi, sukunimi);
         k.setViite(viite);
@@ -51,4 +68,34 @@ public class Viitepalvelu {
     public Viite getViite() {
         return viite;
     }
+    
+    public boolean tunnisteKelpaa(String tunniste){
+        if (viitehallinta.etsiTunniste(tunniste) == null){
+            return true;
+        }
+        return false;
+    }
+    
+    public String generoiTunniste(){
+        String tunniste = "";
+        for (Kirjoittaja k: viite.getKirjoittajat()){
+            tunniste += k.getSukunimi().charAt(0);
+        }
+        tunniste = tunniste.toUpperCase();
+        tunniste = tunniste.replaceAll("Ä", "A");
+        tunniste = tunniste.replaceAll("Ö", "O");
+        tunniste += viite.getVuosi();
+        
+        while(!tunnisteKelpaa(tunniste)){
+            tunniste += "a";
+        }
+        return tunniste;
+        
+    }
+
+    public void lisaaViitteenTunniste(String tunniste) {
+        viite.setTunniste(tunniste);
+    }
+ 
+   
 }
