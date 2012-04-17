@@ -3,24 +3,32 @@ package kumiankka.viitejarjestelma;
 import java.util.List;
 
 public class BibTexGeneraattori {
-    private Viite viite;
-
-    public BibTexGeneraattori(Viite viite) {
-        this.viite = viite;
+    public BibTexGeneraattori() {
     }
 
-    public String teeViitteestaBibtex() {
-        String bibtex = "@" + this.viite.getTyyppi() + "{" + this.viite.getTunniste() + ",\n";
-        bibtex += this.teeKirjoittajistaBibtex()
-                + this.teeOtsikostaBibtex()
-                + this.teeJulkaisijastaBibtex()
-                + this.teeVuosiluvustaBibtex();
+    public String teeViitteestaBibtex(Viite viite) {
+        String bibtex = "@" + viite.getTyyppi() + "{" + viite.getTunniste() + ",\n";
+        bibtex += this.teeKirjoittajistaBibtex(viite)
+                + this.teeOtsikostaBibtex(viite)
+                + this.teeLehdenNimestaBibtex(viite)
+                + this.teeJulkaisijastaBibtex(viite)
+                + this.teeVuosiluvustaBibtex(viite)
+                + this.teeKuukaudestaBibtex(viite)
+                + this.teeSivunumeroistaBibtex(viite)
+                + this.teeLehdenNumerostaBibtex(viite)
+                + this.teeOsoitteestaBibtex(viite)
+                + this.teeOrganisaatiostaBibtex(viite)
+                + this.teeKirjanNimestaBibtex(viite)
+                + this.teeSarjastaBibtex(viite)
+                + this.teePainoksestaBibtex(viite)
+                + this.teeLisatiedostaBibtex(viite)
+                + "}\n";
         return bibtex;
     }
 
-    public String teeKirjoittajistaBibtex() {
-        String bibtex = "";
-        List<Kirjoittaja> kirjoittajat = this.viite.getKirjoittajat();
+    public String teeKirjoittajistaBibtex(Viite viite) {
+        String bibtex = "author = {";
+        List<Kirjoittaja> kirjoittajat = viite.getKirjoittajat();
 
         for (int i = 0; i < kirjoittajat.size(); i++) {
             bibtex += this.teeKirjoittajastaBibtex(kirjoittajat.get(i));
@@ -29,131 +37,84 @@ public class BibTexGeneraattori {
                 bibtex += " and ";
             }
         }
-        return bibtex;
+        return bibtex += "},\n";
     }
 
     public String teeKirjoittajastaBibtex(Kirjoittaja kirjoittaja) {
-        return kirjoittaja.getSukunimi() + ", " + kirjoittaja.getSukunimi();
+        return kirjoittaja.getSukunimi() + ", " + kirjoittaja.getEtunimi();
     }
 
-    public String teeOtsikostaBibtex() {
-        String otsikko = this.viite.getOtsikko();
-
-        if (otsikko.isEmpty()) {
-            return "";
-        }
-
-        return "title = {" + otsikko + "},\n";
+    public String teeOtsikostaBibtex(Viite viite) {
+        return this.stringTiedostaBibtex("title", viite.getOtsikko());
     }
 
-    public String teeJulkaisijastaBibtex() {
-        String julkaisija = this.viite.getJulkaisija();
-
-        if (julkaisija.isEmpty()) {
-            return "";
-        }
-
-        return "publisher = {" + julkaisija + "},\n";
+    public String teeJulkaisijastaBibtex(Viite viite) {
+        return this.stringTiedostaBibtex("publisher", viite.getJulkaisija());
     }
 
-    public String teeVuosiluvustaBibtex() {
-        int vuosi = this.viite.getVuosi();
-
-        if (vuosi == -1) {
-            return "";
-        }
-
-        return "year = {" + vuosi + "},\n";
+    public String teeLehdenNimestaBibtex(Viite viite) {
+        return this.stringTiedostaBibtex("journal", viite.getLehdenNimi());
     }
 
-    public String teeKuukaudestaBibtex() {
-        int kuukausi = this.viite.getKuukausi();
-
-        if (kuukausi == -1) {
-            return "";
-        }
-
-        return "month = {" + kuukausi + "},\n";
+    public String teeVuosiluvustaBibtex(Viite viite) {
+        return this.intTiedostaBibtex("year", viite.getVuosi());
     }
 
-    public String teeSivunumeroistaBibtex() {
-        int alku = this.viite.getAloitusSivu();
-        int loppu = this.viite.getVikaSivu();
+    public String teeKuukaudestaBibtex(Viite viite) {
+        return this.intTiedostaBibtex("month", viite.getKuukausi());
+    }
 
-        if (alku == -1 || loppu == -1) {
+    public String teeSivunumeroistaBibtex(Viite viite) {
+        int alku = viite.getAloitusSivu();
+        int loppu = viite.getVikaSivu();
+
+        if (alku == 0 || loppu == 0) {
             return "";
         }
 
         return "pages = {" + alku + "--" + loppu + "},\n";
     }
 
-    public String teeLehdenNumerostaBibtex() {
-        int lehdenNro = this.viite.getLehdenNumero();
-
-        if (lehdenNro == -1) {
-            return "";
-        }
-
-        return "number = {" + lehdenNro + "},\n";
+    public String teeLehdenNumerostaBibtex(Viite viite) {
+        return this.intTiedostaBibtex("number", viite.getLehdenNumero());
     }
 
-    public String teeOsoitteestaBibtex() {
-        String osoite = this.viite.getOsoite();
-
-        if (osoite.isEmpty()) {
-            return "";
-        }
-
-        return "address = {" + osoite + "},\n";
+    public String teeOsoitteestaBibtex(Viite viite) {
+        return this.stringTiedostaBibtex("address", viite.getOsoite());
     }
 
-    public String teeOrganisaatiostaBibtex() {
-        String organisaatio = this.viite.getOrganisaatio();
-
-        if (organisaatio.isEmpty()) {
-            return "";
-        }
-
-        return "organization = {" + organisaatio + "},\n";
+    public String teeOrganisaatiostaBibtex(Viite viite) {
+        return this.stringTiedostaBibtex("organization", viite.getOrganisaatio());
     }
 
-    public String teeKirjanNimestaBibtex() {
-        String kirjanNimi = this.viite.getKirjanNimi();
-
-        if (kirjanNimi.isEmpty()) {
-            return "";
-        }
-
-        return "booktitle = {" + kirjanNimi + "},\n";
+    public String teeKirjanNimestaBibtex(Viite viite) {
+        return this.stringTiedostaBibtex("booktitle", viite.getKirjanNimi());
     }
 
-    public String teeSarjastaBibtex() {
-        String sarja = this.viite.getSarja();
+    public String teeSarjastaBibtex(Viite viite) {
+        return this.stringTiedostaBibtex("series", viite.getSarja());
+    }
 
-        if (sarja.isEmpty()) {
-            return "";
-        }
-        
-        return "series = {" + sarja + "},\n";
+    public String teePainoksestaBibtex(Viite viite) {
+        return this.stringTiedostaBibtex("edition", viite.getPainos());
     }
-    
-    public String teePainoksestaBibtex() {
-        String painos = this.viite.getPainos();
-        
-        if (painos.isEmpty()) {
-            return "";
-        }
-        
-        return "edition = {" + painos + "},\n";
+
+    public String teeLisatiedostaBibtex(Viite viite) {
+        return this.stringTiedostaBibtex("note", viite.getLisatieto());
     }
-    
-    public String teeLisatiedostaBibtex() {
-        String tieto = this.viite.getLisatieto();
-        
-        if(tieto.isEmpty()) {
+
+    public String stringTiedostaBibtex(String kentta, String tieto) {
+        if (tieto == null) {
             return "";
         }
-        
-        return "note = {" + tieto + "},\n";
+
+        return kentta + " = {" + tieto + "},\n";
+    }
+
+    public String intTiedostaBibtex(String kentta, int tieto) {
+        if (tieto == 0) {
+            return "";
+        }
+        return this.stringTiedostaBibtex(kentta, tieto + "");
     }
 }
