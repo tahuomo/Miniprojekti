@@ -29,4 +29,19 @@ public class Viitetietokanta implements Viitehallinta {
         EntityManager em = getEntityManager();
         return em.createQuery("SELECT v FROM Viite v").getResultList();
     }
+
+    @Override
+    public Viite etsiTunniste(String tunniste) {
+        EntityManager em = getEntityManager();
+        try {
+            return (Viite) em.createQuery(
+                    "SELECT v FROM Viite v "
+                    + "WHERE v.tunniste LIKE :tunniste")
+                    .setParameter("tunniste", tunniste)
+                    .getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+        
+    }
 }
