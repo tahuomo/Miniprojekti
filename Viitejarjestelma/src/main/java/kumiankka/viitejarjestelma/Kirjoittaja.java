@@ -34,6 +34,14 @@ public class Kirjoittaja implements Serializable {
         this.viite = viite;
     }
 
+    public String getEtunimi() {
+        return etunimi;
+    }
+
+    public String getSukunimi() {
+        return sukunimi;
+    }
+
     public String toString() {
         return etunimi.charAt(0) + ". " + sukunimi;
     }
