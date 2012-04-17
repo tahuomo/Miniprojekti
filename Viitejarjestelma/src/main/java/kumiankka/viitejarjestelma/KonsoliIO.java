@@ -9,18 +9,40 @@ public class KonsoliIO implements IO {
         System.out.println(toPrint);
     }
 
-    public int lueLuku(String prompt) {
+    public int lueLuku(String prompt, boolean pakollinen) {
         System.out.print(prompt + " ");
         int i = 0;
+        String syote = scanner.nextLine();
         try {
-            i = Integer.parseInt(scanner.nextLine());
+            i = Integer.parseInt(syote);
         } catch (Exception e) {
-            return lueLuku(prompt);
+            if (pakollinen){
+                tulosta("Tyhjä syöte ei kelpaa!");
+                return lueLuku(prompt, pakollinen);
+            }
         }
         return i;
     }
+    
+    
 
-    public String lueRivi(String prompt) {
+    public String lueSyote(String prompt, boolean pakollinen) {
+        System.out.print(prompt + " ");
+        String syote = scanner.nextLine();
+        if (syote.isEmpty()){
+            if (pakollinen){
+                tulosta("Tyhjä syöte ei kelpaa!");
+                return lueSyote(prompt, pakollinen);
+            } else {
+                return null;
+            }
+            
+        }
+        return syote;
+    }
+
+    @Override
+    public String LueRivi(String prompt) {
         System.out.print(prompt + " ");
         return scanner.nextLine();
     }
