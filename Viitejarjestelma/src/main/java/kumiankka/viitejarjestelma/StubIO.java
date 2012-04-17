@@ -16,7 +16,7 @@ public class StubIO implements IO {
         printit.add(toPrint);
     }
 
-    public int lueLuku(String prompt) {
+    public int lueLuku(String prompt, boolean pakollinen) {
         tulosta(prompt);
         return Integer.parseInt(syotteet[i++]);
     }
@@ -25,7 +25,15 @@ public class StubIO implements IO {
         return printit;
     }
 
-    public String lueRivi(String prompt) {
+    public String lueSyote(String prompt, boolean pakollinen) {
+        tulosta(prompt);
+        String s = syotteet[i++];
+        if (s == "") return null;
+        return s;
+    
+    }
+    
+    public String LueRivi(String prompt) {
         tulosta(prompt);
         if (i < syotteet.length) {
             return syotteet[i++];
