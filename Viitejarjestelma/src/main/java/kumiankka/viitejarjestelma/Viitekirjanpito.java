@@ -17,4 +17,13 @@ public class Viitekirjanpito implements Viitehallinta {
     public List<Viite> listaaViitteet() {
         return viitteet;
     }
+
+
+    @Override
+    public Viite etsiTunniste(String tunniste) {
+        for (Viite v: viitteet){
+            if (v.getTunniste().equals(tunniste)) return v;
+        }
+        return null;
+    }
 }
