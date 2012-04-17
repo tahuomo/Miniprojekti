@@ -61,19 +61,19 @@ public class ViiteTest {
         assertNotNull(a.getKirjoittajat());
     }
     
-    @Test
-    public void toStringToimiiYhdellaKirjoittajalla() {
-        String tulos = "article: M. Luukkainen Matin Seikkailut. Matin sanomat (ACM), "
-                    +  "7:1-13, 2012";
-        assertEquals(tulos, a.toString());
-    }
-    
-    @Test
-    public void toStringToimiiUseammallaKirjoittajalla() {
-        kirjoittajat.add(new Kirjoittaja("Arto", "Vihavainen"));
-        
-        String tulos = "article: M. Luukkainen, A. Vihavainen Matin Seikkailut. Matin sanomat (ACM), "
-                    +  "7:1-13, 2012";
-        assertEquals(tulos, a.toString());
-    }
+//    @Test
+//    public void toStringToimiiYhdellaKirjoittajalla() {
+//        String tulos = "article: M. Luukkainen Matin Seikkailut. Matin sanomat (ACM), "
+//                    +  "7:1-13, 2012";
+//        assertEquals(tulos, a.toString());
+//    }
+//    
+//    @Test
+//    public void toStringToimiiUseammallaKirjoittajalla() {
+//        kirjoittajat.add(new Kirjoittaja("Arto", "Vihavainen"));
+//        
+//        String tulos = "article: M. Luukkainen, A. Vihavainen Matin Seikkailut. Matin sanomat (ACM), "
+//                    +  "7:1-13, 2012";
+//        assertEquals(tulos, a.toString());
+//    }
 }
