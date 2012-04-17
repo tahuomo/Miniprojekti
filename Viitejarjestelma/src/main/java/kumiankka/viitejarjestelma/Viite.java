@@ -19,6 +19,8 @@ public class Viite implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @Column
+    private String tunniste;
+    @Column
     private String tyyppi;
     @Column
     private String otsikko;
@@ -34,6 +36,20 @@ public class Viite implements Serializable {
     private int vikaSivu;
     @Column
     private int lehdenNumero;
+    @Column
+    private int kuukausi;
+    @Column
+    private String osoite;
+    @Column
+    private String organisaatio;
+    @Column
+    private String kirjanNimi;
+    @Column
+    private String sarja;
+    @Column
+    private String painos;
+    @Column
+    private String lisatieto;      
     @OneToMany(cascade = CascadeType.MERGE)
     @JoinTable(joinColumns = {
         @JoinColumn(name = "viite_id")},
@@ -119,6 +135,70 @@ public class Viite implements Serializable {
 
     public void setVuosi(int vuosi) {
         this.vuosi = vuosi;
+    }
+
+    public String getKirjanNimi() {
+        return kirjanNimi;
+    }
+
+    public void setKirjanNimi(String kirjanNimi) {
+        this.kirjanNimi = kirjanNimi;
+    }
+
+    public int getKuukausi() {
+        return kuukausi;
+    }
+
+    public void setKuukausi(int kuukausi) {
+        this.kuukausi = kuukausi;
+    }
+
+    public String getLisatieto() {
+        return lisatieto;
+    }
+
+    public void setLisatieto(String lisatieto) {
+        this.lisatieto = lisatieto;
+    }
+
+    public String getOrganisaatio() {
+        return organisaatio;
+    }
+
+    public void setOrganisaatio(String organisaatio) {
+        this.organisaatio = organisaatio;
+    }
+
+    public String getOsoite() {
+        return osoite;
+    }
+
+    public void setOsoite(String osoite) {
+        this.osoite = osoite;
+    }
+
+    public String getPainos() {
+        return painos;
+    }
+
+    public void setPainos(String painos) {
+        this.painos = painos;
+    }
+
+    public String getSarja() {
+        return sarja;
+    }
+
+    public void setSarja(String sarja) {
+        this.sarja = sarja;
+    }
+
+    public String getTunniste() {
+        return tunniste;
+    }
+
+    public void setTunniste(String tunniste) {
+        this.tunniste = tunniste;
     }
 
     public String toString() {
