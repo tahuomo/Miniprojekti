@@ -18,7 +18,9 @@ public class StubIO implements IO {
 
     public int lueLuku(String prompt, boolean pakollinen) {
         tulosta(prompt);
-        return Integer.parseInt(syotteet[i++]);
+        String syote = syotteet[i++];
+        if (syote.isEmpty()) return 0;
+        return Integer.parseInt(syote);
     }
 
     public ArrayList<String> getPrintit() {
