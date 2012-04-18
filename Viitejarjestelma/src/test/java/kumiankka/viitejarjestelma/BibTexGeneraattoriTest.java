@@ -107,4 +107,27 @@ public class BibTexGeneraattoriTest {
         
         assertEquals(this.bg.teeViitteestaBibtex(this.tyhjaViite), bibtex);
     }
+    
+    @Test
+    public void bibtexStringOikeinKunVikaSivuTyhja() {
+        this.viite.setVikaSivu(0);
+        String bibtex = "@tyyppi{LV12,\n"
+                + "author = {Luukkainen, Matti and Vihavainen, Arto},\n"
+                + "title = {Otsikko},\n"
+                + "journal = {Lehden nimi},\n"                
+                + "publisher = {Julkaisija},\n"
+                + "year = {2012},\n"
+                + "month = {2},\n"
+                + "pages = {1},\n"
+                + "number = {1},\n"
+                + "address = {Osoite},\n"
+                + "organization = {Organisaatio},\n"
+                + "booktitle = {Kirjan nimi},\n"
+                + "series = {Sarja},\n"
+                + "edition = {Painos},\n"
+                + "note = {Testaaminen on kivaa},\n"
+                + "}\n";
+        
+        assertEquals(this.bg.teeViitteestaBibtex(this.viite), bibtex);
+    }
 }
