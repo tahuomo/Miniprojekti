@@ -5,9 +5,13 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class ViitePalveluTest {
-    private Viitepalvelu viitepalvelu;
+    private Viitepalvelu viitepalveluA;
+    private Viitepalvelu viitepalveluB;
+    private Viitepalvelu viitepalveluC;
     private Viitekirjanpito tallennusStub;
-    private Viite viite;
+    private Viite artikkeli;
+    private Viite kirja;
+    private Viite konf;
 
     public ViitePalveluTest() {
     }
@@ -23,14 +27,28 @@ public class ViitePalveluTest {
     @Before
     public void setUp() {
         this.tallennusStub = new Viitekirjanpito();
-        this.viitepalvelu = new Viitepalvelu(this.tallennusStub, null, null);
+        this.viitepalveluA = new Viitepalvelu(this.tallennusStub, null, null);
+        this.viitepalveluB = new Viitepalvelu(this.tallennusStub, null, null);
+        this.viitepalveluC = new Viitepalvelu(this.tallennusStub, null, null);
 
-        this.viitepalvelu.teeViite("artikkeli");
-        this.viitepalvelu.lisaaViitteenYleisetTiedot("Otsikko", 2012);
-        this.viitepalvelu.lisaaArtikkelinTiedot("Matin sanomat", 1, 2, 12, "ACM");
-        this.viitepalvelu.lisaaKirjoittaja("Matti", "Luukkainen");
+        this.viitepalveluA.teeViite("article");
+        this.viitepalveluA.lisaaViitteenYleisetTiedot("Otsikko", 2012);
+        this.viitepalveluA.lisaaArtikkelinTiedot("Matin sanomat", 1, 2, 12, "ACM");
+        this.viitepalveluA.lisaaKirjoittaja("Matti", "Luukkainen");
+        
+        this.viitepalveluB.teeViite("book");
+        this.viitepalveluB.lisaaViitteenYleisetTiedot("Otsikko", 2000);
+        this.viitepalveluB.lisaaKirjanTiedot("Julkaisija", "Osoite", "Painos", "Sarja");
+        this.viitepalveluB.lisaaKirjoittaja("M.", "Luukkainen");
+        this.viitepalveluB.lisaaKirjoittaja("A.", "Vihavainen");
+        
+        this.viitepalveluC.teeViite("inproceedings");
+        this.viitepalveluC.lisaaKonferenssijulkaisunTiedot("kirja", "julkaisija", "osoite", "sarja", 1, 2, "organisaatio");
 
-        this.viite = this.viitepalvelu.getViite();
+        this.artikkeli = this.viitepalveluA.getViite();
+        this.kirja = this.viitepalveluB.getViite();
+        this.konf = this.viitepalveluC.getViite();
+        
     }
 
     @After
@@ -39,57 +57,57 @@ public class ViitePalveluTest {
 
     @Test
     public void konstruktoriLuoOlion() {
-        assertNotNull(this.viitepalvelu);
+        assertNotNull(this.viitepalveluA);
     }
 
     @Test
     public void teeViiteLuoOlion() {
-        assertNotNull(this.viitepalvelu.getViite());
+        assertNotNull(this.viitepalveluA.getViite());
     }
 
     @Test
     public void teeViiteLuoOikeantyyppisenViitteen() {
-        assertEquals(this.viite.getTyyppi(), "artikkeli");
+        assertEquals(this.artikkeli.getTyyppi(), "article");
     }
 
     @Test
     public void viitteenOtsikkoLisataanOikein() {
-        assertEquals(this.viite.getOtsikko(), "Otsikko");
+        assertEquals(this.artikkeli.getOtsikko(), "Otsikko");
     }
 
     @Test
     public void viitteenVuosiLisataanOikein() {
-        assertTrue(this.viite.getVuosi() == 2012);
+        assertTrue(this.artikkeli.getVuosi() == 2012);
     }
 
     @Test
     public void artikkelinLehtiOikein() {
-        assertEquals(this.viite.getLehdenNimi(), "Matin sanomat");
+        assertEquals(this.artikkeli.getLehdenNimi(), "Matin sanomat");
     }
 
     @Test
     public void artikkelinLehdenNumeroOikein() {
-        assertTrue(this.viite.getLehdenNumero() == 1);
+        assertTrue(this.artikkeli.getLehdenNumero() == 1);
     }
 
     @Test
     public void artikkelinAlkusivuOikein() {
-        assertTrue(this.viite.getAloitusSivu() == 2);
+        assertTrue(this.artikkeli.getAloitusSivu() == 2);
     }
 
     @Test
     public void artikkelinVikaSivuOikein() {
-        assertTrue(this.viite.getVikaSivu() == 12);
+        assertTrue(this.artikkeli.getVikaSivu() == 12);
     }
 
     @Test
     public void artikkelinJulkaisijaOikein() {
-        assertEquals(this.viite.getJulkaisija(), "ACM");
+        assertEquals(this.artikkeli.getJulkaisija(), "ACM");
     }
 
     @Test
     public void kirjoittajaLisataanOikein() {
-        List<Kirjoittaja> k = this.viite.getKirjoittajat();
+        List<Kirjoittaja> k = this.artikkeli.getKirjoittajat();
 
         assertTrue(k.size() == 1
                 && k.get(0).toString().equals("M. Luukkainen"));
@@ -97,20 +115,53 @@ public class ViitePalveluTest {
 
     @Test
     public void viitteenTallennusToimii() {
-        this.viitepalvelu.tallennaViite();
+        this.viitepalveluA.tallennaViite();
 
-        assertEquals(this.viite, this.tallennusStub.viitteet.get(0));
+        assertEquals(this.artikkeli, this.tallennusStub.viitteet.get(0));
     }
 
     @Test
     public void olemattomienViitteidenListausToimii() {
-        assertEquals(this.viitepalvelu.listaaViitteet(), "");
+        assertEquals(this.viitepalveluA.listaaViitteet(), "");
     }
 
     @Test
     public void viitteidenListausToimii() {
-        this.viitepalvelu.tallennaViite();
+        this.viitepalveluA.tallennaViite();
 
-        assertEquals(this.viitepalvelu.listaaViitteet(), "[1] " + this.viite.toString() + "\n");
+        assertEquals(this.viitepalveluA.listaaViitteet(), "[1] " + this.artikkeli.toString() + "\n");
+    }
+   
+    @Test
+    public void kirjanYleisetTiedotOikein() {
+        assertTrue(this.kirja.getOtsikko().equals("Otsikko") &&
+                this.kirja.getVuosi() == 2000);
+    }
+    
+    @Test
+    public void kirjanMuutTiedotOikein() {
+        assertTrue(this.kirja.getJulkaisija().equals("Julkaisija") &&
+                this.kirja.getOsoite().equals("Osoite") &&
+                this.kirja.getPainos().equals("Painos") &&
+                this.kirja.getSarja().equals("Sarja"));
+    }
+    
+    @Test
+    public void konferenssiJulkaisunOmatTiedotOikein() {
+        assertTrue(this.konf.getKirjanNimi().equals("kirja") &&
+                this.konf.getJulkaisija().equals("julkaisija") &&
+                this.konf.getOsoite().equals("osoite") &&
+                this.konf.getSarja().equals("sarja")&&
+                this.konf.getAloitusSivu() == 1 &&
+                this.konf.getVikaSivu() == 2 &&
+                this.konf.getOrganisaatio().equals("organisaatio"));
+    }
+    
+    @Test
+    public void valinnaisetTiedotLisataanOikein() {
+        this.viitepalveluA.lisaaValinnaisetTiedot(1, "Lisatieto");
+        
+        assertTrue(this.artikkeli.getKuukausi() == 1 &&
+                this.artikkeli.getLisatieto().equals("Lisatieto"));
     }
 }
