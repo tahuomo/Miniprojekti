@@ -11,7 +11,7 @@ public class App {
         KonsoliIO io = new KonsoliIO();
         Viitetietokanta vtk = new Viitetietokanta();
         BibTexGeneraattori bib = new BibTexGeneraattori();
-        TiedostonKirjoittaja tk = new TiedostonKirjoittaja();
+        Tiedostonkasittely tk = new TiedostonKirjoittaja();
         Viitepalvelu vp = new Viitepalvelu(vtk, bib, tk);
         TekstiUI ui = new TekstiUI(io, vp);
 

@@ -1,4 +1,3 @@
-
 package kumiankka.viitejarjestelma;
 
 import java.util.List;
@@ -7,39 +6,38 @@ public class Viitepalvelu {
     private Viitehallinta viitehallinta;
     private Viite viite;
     private BibTexGeneraattori bibgen;
-    private TiedostonKirjoittaja kirjoittaja;
-    
-    public Viitepalvelu(Viitehallinta viitehallinta, BibTexGeneraattori bibgen, TiedostonKirjoittaja kirjoittaja){
+    private Tiedostonkasittely tiedostonkirjoittaja;
+
+    public Viitepalvelu(Viitehallinta viitehallinta, BibTexGeneraattori bibgen, Tiedostonkasittely tiedostonkirjoittaja) {
         this.viitehallinta = viitehallinta;
         this.bibgen = bibgen;
-        this.kirjoittaja = kirjoittaja;
+        this.tiedostonkirjoittaja = tiedostonkirjoittaja;
     }
-    
-    public void teeViite(String tyyppi){
+
+    public void teeViite(String tyyppi) {
         viite = new Viite(tyyppi);
     }
-    
-    
-    public void lisaaViitteenYleisetTiedot(String otsikko, int julkaisuvuosi){
+
+    public void lisaaViitteenYleisetTiedot(String otsikko, int julkaisuvuosi) {
         viite.setOtsikko(otsikko);
         viite.setVuosi(julkaisuvuosi);
     }
-    
-    public void lisaaArtikkelinTiedot(String lehti, int lehdenNumero, int alkusivu, int vikasivu, String julkaisija){
+
+    public void lisaaArtikkelinTiedot(String lehti, int lehdenNumero, int alkusivu, int vikasivu, String julkaisija) {
         viite.setLehdenNimi(lehti);
         viite.setLehdenNumero(lehdenNumero);
         viite.setAloitusSivu(alkusivu);
         viite.setVikaSivu(vikasivu);
         viite.setJulkaisija(julkaisija);
     }
-    
+
     public void lisaaKirjanTiedot(String julkaisija, String osoite, String painos, String sarja) {
         viite.setJulkaisija(julkaisija);
         viite.setOsoite(osoite);
         viite.setPainos(painos);
         viite.setSarja(sarja);
     }
-    
+
     public void lisaaKonferenssijulkaisunTiedot(String kirjanNimi, String julkaisija, String osoite, String sarja, int aloitusSivu, int lopetusSivu, String organisaatio) {
         viite.setKirjanNimi(kirjanNimi);
         viite.setJulkaisija(julkaisija);
@@ -49,77 +47,70 @@ public class Viitepalvelu {
         viite.setVikaSivu(lopetusSivu);
         viite.setOrganisaatio(organisaatio);
     }
-    
+
     public void lisaaValinnaisetTiedot(int kuukausi, String lisatieto) {
         viite.setKuukausi(kuukausi);
         viite.setLisatieto(lisatieto);
     }
-    
-    public void lisaaKirjoittaja(String etunimi, String sukunimi){
+
+    public void lisaaKirjoittaja(String etunimi, String sukunimi) {
         Kirjoittaja k = new Kirjoittaja(etunimi, sukunimi);
         k.setViite(viite);
-        viite.lisaaKirjoittaja(k); 
+        viite.lisaaKirjoittaja(k);
     }
-    
+
     public void lisaaViitteenTunniste(String tunniste) {
         viite.setTunniste(tunniste);
     }
-    
-    public void tallennaViite(){
+
+    public void tallennaViite() {
         viitehallinta.tallennaViite(viite);
     }
 
     public String listaaViitteet() {
         List<Viite> viitteet = viitehallinta.listaaViitteet();
         String viitelista = "";
-        for (int i = 0; i < viitteet.size(); i++){
-            viitelista += "["+ (i+1) + "] " + viitteet.get(i).toString() + "\n";
+        for (int i = 0; i < viitteet.size(); i++) {
+            viitelista += "[" + (i + 1) + "] " + viitteet.get(i).toString() + "\n";
         }
-        
+
         return viitelista;
     }
-    
+
     public Viite getViite() {
         return viite;
     }
-    
-    public boolean tunnisteKelpaa(String tunniste){
-        if (viitehallinta.etsiTunniste(tunniste) == null){
+
+    public boolean tunnisteKelpaa(String tunniste) {
+        if (viitehallinta.etsiTunniste(tunniste) == null) {
             return true;
         }
         return false;
     }
-    
-    public String generoiTunniste(){
+
+    public String generoiTunniste() {
         String tunniste = "";
-        for (Kirjoittaja k: viite.getKirjoittajat()){
+        for (Kirjoittaja k : viite.getKirjoittajat()) {
             tunniste += k.getSukunimi().charAt(0);
         }
         tunniste = tunniste.toUpperCase();
         tunniste = tunniste.replaceAll("Ä", "A");
         tunniste = tunniste.replaceAll("Ö", "O");
         tunniste += viite.getVuosi();
-        
-        while(!tunnisteKelpaa(tunniste)){
+
+        while (!tunnisteKelpaa(tunniste)) {
             tunniste += "a";
         }
         return tunniste;
-        
+
     }
-    
-    
-    public boolean bibtexTiedostoon(String tiedostonimi){
+
+    public boolean bibtexTiedostoon(String tiedostonimi) {
         List<Viite> viitteet = viitehallinta.listaaViitteet();
         String bibtex = "\n";
-        for (Viite v : viitteet){
+        for (Viite v : viitteet) {
             bibtex += bibgen.teeViitteestaBibtex(v) + "\n";
         }
-        return kirjoittaja.kirjoitaTiedostoon(bibtex, tiedostonimi);
+        return tiedostonkirjoittaja.kirjoitaTiedostoon(bibtex, tiedostonimi);
     }
-
-    
-
-  
- 
-   
 }
