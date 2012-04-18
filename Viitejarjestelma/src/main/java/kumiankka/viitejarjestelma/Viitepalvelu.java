@@ -59,7 +59,7 @@ public class Viitepalvelu {
         List<Viite> viitteet = viitehallinta.listaaViitteet();
         String viitelista = "";
         for (int i = 0; i < viitteet.size(); i++){
-            viitelista += i + " " + viitteet.get(i).toString() + "\n";
+            viitelista += "["+ (i+1) + "] " + viitteet.get(i).toString() + "\n";
         }
         
         return viitelista;

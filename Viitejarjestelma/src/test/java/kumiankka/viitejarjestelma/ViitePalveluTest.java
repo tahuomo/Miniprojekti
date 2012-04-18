@@ -111,6 +111,6 @@ public class ViitePalveluTest {
     public void viitteidenListausToimii() {
         this.viitepalvelu.tallennaViite();
 
-        assertEquals(this.viitepalvelu.listaaViitteet(), "0 " + this.viite.toString() + "\n");
+        assertEquals(this.viitepalvelu.listaaViitteet(), "[1] " + this.viite.toString() + "\n");
     }
 }
