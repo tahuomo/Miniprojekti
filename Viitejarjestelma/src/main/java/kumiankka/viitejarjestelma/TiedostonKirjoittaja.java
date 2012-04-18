@@ -3,12 +3,14 @@ package kumiankka.viitejarjestelma;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class TiedostonKirjoittaja {    
+public class TiedostonKirjoittaja {
+    private static final String tiedostopaate = ".bib";
     public TiedostonKirjoittaja() {
         
     }
     
     public boolean kirjoitaTiedostoon(String teksti, String tiedostonimi) {
+        tiedostonimi += tiedostopaate;
         try {
             FileWriter kirjoittaja = new FileWriter(tiedostonimi);
             kirjoittaja.write(teksti);
