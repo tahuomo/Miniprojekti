@@ -33,13 +33,13 @@ public class StubIO implements IO {
     
     }
     
-    public String LueRivi(String prompt) {
-        tulosta(prompt);
-        if (i < syotteet.length) {
-            return syotteet[i++];
-        }
-        return "";
-    
-    }
+//    public String LueRivi(String prompt) {
+//        tulosta(prompt);
+//        if (i < syotteet.length) {
+//            return syotteet[i++];
+//        }
+//        return "";
+//    
+//    }
     
 }

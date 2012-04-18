@@ -13,7 +13,8 @@ public class TekstiUI {
         io.tulosta("Viitekirjanpito Hieno Ohjelma versio J.34H");
         io.tulosta("Kirjoita auta näyttääksesi komennot");
         while (true) {
-            String komento = io.LueRivi(">");
+            String komento = io.lueSyote(">", false);
+            if (komento == null) continue;
 
             if (komento.equals("lopeta")) {
                 io.tulosta("Ohjelma lopetetaan.");

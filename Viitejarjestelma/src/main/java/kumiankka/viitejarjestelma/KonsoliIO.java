@@ -41,9 +41,9 @@ public class KonsoliIO implements IO {
         return syote;
     }
 
-    @Override
-    public String LueRivi(String prompt) {
-        System.out.print(prompt + " ");
-        return scanner.nextLine();
-    }
+//    @Override
+//    public String LueRivi(String prompt) {
+//        System.out.print(prompt + " ");
+//        return scanner.nextLine();
+//    }
 }
