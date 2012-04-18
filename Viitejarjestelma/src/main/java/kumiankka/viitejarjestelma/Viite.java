@@ -209,7 +209,7 @@ public class Viite implements Serializable {
                 palautus += ", ";
             }
         }
-        palautus += " " + otsikko + " julkaistu " + vuosi + " Tunniste: " + tunniste;
+        palautus += ": " + otsikko + " - Julkaistu " + vuosi + " - Tunniste: " + tunniste;
 
         return palautus;
     }
