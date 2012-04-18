@@ -4,13 +4,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class TiedostonKirjoittaja {
-    private static final String tiedostopaate = ".bib";
+    private static final String PAATE = ".bib";
+    private static final String POLKU = "tietokanta/";
     public TiedostonKirjoittaja() {
         
     }
     
     public boolean kirjoitaTiedostoon(String teksti, String tiedostonimi) {
-        tiedostonimi += tiedostopaate;
+        tiedostonimi = POLKU + tiedostonimi + PAATE;
         try {
             FileWriter kirjoittaja = new FileWriter(tiedostonimi);
             kirjoittaja.write(teksti);
