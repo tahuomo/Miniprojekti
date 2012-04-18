@@ -70,11 +70,14 @@ public class BibTexGeneraattori {
         int alku = viite.getAloitusSivu();
         int loppu = viite.getVikaSivu();
 
-        if (alku == 0 || loppu == 0) {
+        if (alku == 0) {
             return "";
         }
+        if (loppu == 0) {
+            return this.intTiedostaBibtex("pages", alku);
+        }
 
-        return "pages = {" + alku + "--" + loppu + "},\n";
+        return this.stringTiedostaBibtex("pages", alku + "--" + loppu);
     }
 
     private String teeLehdenNumerostaBibtex(Viite viite) {
