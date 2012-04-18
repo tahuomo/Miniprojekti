@@ -50,6 +50,11 @@ public class Viitepalvelu {
         viite.setOrganisaatio(organisaatio);
     }
     
+    public void lisaaValinnaisetTiedot(int kuukausi, String lisatieto) {
+        viite.setKuukausi(kuukausi);
+        viite.setLisatieto(lisatieto);
+    }
+    
     public void lisaaKirjoittaja(String etunimi, String sukunimi){
         Kirjoittaja k = new Kirjoittaja(etunimi, sukunimi);
         k.setViite(viite);
@@ -111,6 +116,8 @@ public class Viitepalvelu {
         }
         return kirjoittaja.kirjoitaTiedostoon(bibtex, tiedostonimi);
     }
+
+    
 
   
  
