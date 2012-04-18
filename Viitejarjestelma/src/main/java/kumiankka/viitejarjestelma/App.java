@@ -10,7 +10,9 @@ public class App {
 
         KonsoliIO io = new KonsoliIO();
         Viitetietokanta vtk = new Viitetietokanta();
-        Viitepalvelu vp = new Viitepalvelu(vtk);
+        BibTexGeneraattori bib = new BibTexGeneraattori();
+        TiedostonKirjoittaja tk = new TiedostonKirjoittaja();
+        Viitepalvelu vp = new Viitepalvelu(vtk, bib, tk);
         TekstiUI ui = new TekstiUI(io, vp);
 
         ui.run();
