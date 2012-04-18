@@ -3,6 +3,7 @@ package kumiankka.viitejarjestelma;
 import java.util.List;
 
 public class BibTexGeneraattori {
+
     public BibTexGeneraattori() {
     }
 
@@ -23,10 +24,11 @@ public class BibTexGeneraattori {
                 + this.teePainoksestaBibtex(viite)
                 + this.teeLisatiedostaBibtex(viite)
                 + "}\n";
-        return bibtex;
+
+        return SkandienKorvaaja.skanditBibtexYstavallisiksi(bibtex);
     }
 
-    public String teeKirjoittajistaBibtex(Viite viite) {
+    private String teeKirjoittajistaBibtex(Viite viite) {
         String bibtex = "author = {";
         List<Kirjoittaja> kirjoittajat = viite.getKirjoittajat();
 
@@ -40,31 +42,31 @@ public class BibTexGeneraattori {
         return bibtex += "},\n";
     }
 
-    public String teeKirjoittajastaBibtex(Kirjoittaja kirjoittaja) {
+    private String teeKirjoittajastaBibtex(Kirjoittaja kirjoittaja) {
         return kirjoittaja.getSukunimi() + ", " + kirjoittaja.getEtunimi();
     }
 
-    public String teeOtsikostaBibtex(Viite viite) {
+    private String teeOtsikostaBibtex(Viite viite) {
         return this.stringTiedostaBibtex("title", viite.getOtsikko());
     }
 
-    public String teeJulkaisijastaBibtex(Viite viite) {
+    private String teeJulkaisijastaBibtex(Viite viite) {
         return this.stringTiedostaBibtex("publisher", viite.getJulkaisija());
     }
 
-    public String teeLehdenNimestaBibtex(Viite viite) {
+    private String teeLehdenNimestaBibtex(Viite viite) {
         return this.stringTiedostaBibtex("journal", viite.getLehdenNimi());
     }
 
-    public String teeVuosiluvustaBibtex(Viite viite) {
+    private String teeVuosiluvustaBibtex(Viite viite) {
         return this.intTiedostaBibtex("year", viite.getVuosi());
     }
 
-    public String teeKuukaudestaBibtex(Viite viite) {
+    private String teeKuukaudestaBibtex(Viite viite) {
         return this.intTiedostaBibtex("month", viite.getKuukausi());
     }
 
-    public String teeSivunumeroistaBibtex(Viite viite) {
+    private String teeSivunumeroistaBibtex(Viite viite) {
         int alku = viite.getAloitusSivu();
         int loppu = viite.getVikaSivu();
 
@@ -75,35 +77,35 @@ public class BibTexGeneraattori {
         return "pages = {" + alku + "--" + loppu + "},\n";
     }
 
-    public String teeLehdenNumerostaBibtex(Viite viite) {
+    private String teeLehdenNumerostaBibtex(Viite viite) {
         return this.intTiedostaBibtex("number", viite.getLehdenNumero());
     }
 
-    public String teeOsoitteestaBibtex(Viite viite) {
+    private String teeOsoitteestaBibtex(Viite viite) {
         return this.stringTiedostaBibtex("address", viite.getOsoite());
     }
 
-    public String teeOrganisaatiostaBibtex(Viite viite) {
+    private String teeOrganisaatiostaBibtex(Viite viite) {
         return this.stringTiedostaBibtex("organization", viite.getOrganisaatio());
     }
 
-    public String teeKirjanNimestaBibtex(Viite viite) {
+    private String teeKirjanNimestaBibtex(Viite viite) {
         return this.stringTiedostaBibtex("booktitle", viite.getKirjanNimi());
     }
 
-    public String teeSarjastaBibtex(Viite viite) {
+    private String teeSarjastaBibtex(Viite viite) {
         return this.stringTiedostaBibtex("series", viite.getSarja());
     }
 
-    public String teePainoksestaBibtex(Viite viite) {
+    private String teePainoksestaBibtex(Viite viite) {
         return this.stringTiedostaBibtex("edition", viite.getPainos());
     }
 
-    public String teeLisatiedostaBibtex(Viite viite) {
+    private String teeLisatiedostaBibtex(Viite viite) {
         return this.stringTiedostaBibtex("note", viite.getLisatieto());
     }
 
-    public String stringTiedostaBibtex(String kentta, String tieto) {
+    private String stringTiedostaBibtex(String kentta, String tieto) {
         if (tieto == null) {
             return "";
         }
@@ -111,7 +113,7 @@ public class BibTexGeneraattori {
         return kentta + " = {" + tieto + "},\n";
     }
 
-    public String intTiedostaBibtex(String kentta, int tieto) {
+    private String intTiedostaBibtex(String kentta, int tieto) {
         if (tieto == 0) {
             return "";
         }
