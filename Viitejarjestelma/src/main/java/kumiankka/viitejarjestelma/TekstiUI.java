@@ -16,7 +16,9 @@ public class TekstiUI {
         io.tulosta("Kirjoita auta näyttääksesi komennot");
         while (true) {
             String komento = io.lueSyote(">", VALINNAINEN);
-            if (komento == null) continue;
+            if (komento == null) {
+                continue;
+            }
 
             if (komento.equals("lopeta")) {
                 io.tulosta("Ohjelma lopetetaan.");
@@ -28,7 +30,7 @@ public class TekstiUI {
                 listaaViitteet();
             } else if (komento.equals("auta")) {
                 kerroKomennot();
-            } else if (komento.equals("bibtex")){
+            } else if (komento.equals("bibtex")) {
                 kirjoitaBibtexTiedosto();
             }
         }
@@ -38,10 +40,10 @@ public class TekstiUI {
         String tyyppi = kysyViitteenTyyppi();
         vp.teeViite(tyyppi);
         kysyYleisetTiedot();
-        
-        if (tyyppi.equals("article")){
+
+        if (tyyppi.equals("article")) {
             kysyArtikkelinTiedot();
-        } else if (tyyppi.equals("inproceedings")){
+        } else if (tyyppi.equals("inproceedings")) {
             kysyKjulkaisunTiedot();
         } else {
             kysyKirjanTiedot();
@@ -52,17 +54,17 @@ public class TekstiUI {
         vp.tallennaViite();
         io.tulosta("Uusi viite lisättiin!");
     }
-    
-    private String kysyViitteenTyyppi(){
+
+    private String kysyViitteenTyyppi() {
         int valinta = -1;
         while (valinta < 1 || valinta > 3) {
             io.tulosta("Valitse viitteen tyyppi:\n");
             io.tulosta("1. artikkeli\n2. konferenssijulkaisu\n3. kirja");
             valinta = io.lueLuku("Valinta:", PAKOLLINEN);
         }
-        if (valinta == 1){
+        if (valinta == 1) {
             return "article";
-        } else if (valinta == 2){
+        } else if (valinta == 2) {
             return "inproceedings";
         } else {
             return "book";
@@ -74,7 +76,7 @@ public class TekstiUI {
         int vuosi = io.lueLuku("Julkaisuvuosi:", PAKOLLINEN);
         vp.lisaaViitteenYleisetTiedot(otsikko, vuosi);
     }
-    
+
     private void kysyKirjanTiedot() {
         String julkaisija = io.lueSyote("Julkaisija:", PAKOLLINEN);
         String osoite = io.lueSyote("Julkaisijan osoite:", VALINNAINEN);
@@ -83,7 +85,7 @@ public class TekstiUI {
 
         vp.lisaaKirjanTiedot(julkaisija, osoite, painos, sarja);
     }
-    
+
     private void kysyKjulkaisunTiedot() {
         String kirjanNimi = io.lueSyote("Kirjan nimi:", PAKOLLINEN);
         String julkaisija = io.lueSyote("Julkaisija:", VALINNAINEN);
@@ -93,9 +95,8 @@ public class TekstiUI {
         int lopetusSivu = io.lueLuku("Viimeinen sivu:", VALINNAINEN);
         String organisaatio = io.lueSyote("Organisaatio:", VALINNAINEN);
 
-        vp.lisaaKonferenssijulkaisunTiedot(kirjanNimi, julkaisija
-                                           , osoite, sarja,
-                                           aloitusSivu, lopetusSivu, organisaatio);
+        vp.lisaaKonferenssijulkaisunTiedot(kirjanNimi, julkaisija, osoite, sarja,
+                aloitusSivu, lopetusSivu, organisaatio);
     }
 
     private void kysyArtikkelinTiedot() {
@@ -107,11 +108,11 @@ public class TekstiUI {
 
         vp.lisaaArtikkelinTiedot(lehdenNimi, lehdenNumero, aloitusSivu, lopetusSivu, julkaisija);
     }
-    
-    private void kysyValinnaisetTiedot(){
+
+    private void kysyValinnaisetTiedot() {
         int kuukausi = io.lueLuku("Julkaisukuukausi:", VALINNAINEN);
         String lisatiedot = io.lueSyote("Lisätiedot:", VALINNAINEN);
-        
+
         vp.lisaaValinnaisetTiedot(kuukausi, lisatiedot);
     }
 
@@ -120,13 +121,17 @@ public class TekstiUI {
         String etunimi = io.lueSyote("Etunimi:", PAKOLLINEN);
         String sukunimi = io.lueSyote("Sukunimi:", PAKOLLINEN);
         vp.lisaaKirjoittaja(etunimi, sukunimi);
-        
+
         io.tulosta("Anna lisää kirjoittajia, tyhjä lopettaa");
         while (true) {
             etunimi = io.lueSyote("Etunimi:", VALINNAINEN);
-            if (etunimi == null) break;
+            if (etunimi == null) {
+                break;
+            }
             sukunimi = io.lueSyote("Sukunimi:", VALINNAINEN);
-            if (sukunimi == null) break;
+            if (sukunimi == null) {
+                break;
+            }
             vp.lisaaKirjoittaja(etunimi, sukunimi);
         }
     }
@@ -145,8 +150,7 @@ public class TekstiUI {
         String viitteet = vp.listaaViitteet();
         if (viitteet.isEmpty()) {
             io.tulosta("Ei vielä lisättyjä viitteitä");
-        } 
-        else {
+        } else {
             io.tulosta(viitteet);
         }
     }
@@ -154,10 +158,12 @@ public class TekstiUI {
     private void kysyTunniste() {
         String tunniste = vp.generoiTunniste();
         io.tulosta("Tunnisteeksi generoitiin " + tunniste);
-        while (true){
+        while (true) {
             String syote = io.lueSyote("Syötä oma tai anna tyhjä:", VALINNAINEN);
-            if (syote == null) break;
-            if (vp.tunnisteKelpaa(syote)){
+            if (syote == null) {
+                break;
+            }
+            if (vp.tunnisteKelpaa(syote)) {
                 tunniste = syote;
                 break;
             }
@@ -169,7 +175,7 @@ public class TekstiUI {
     private void kirjoitaBibtexTiedosto() {
         String tiedostonimi = io.lueSyote("Anna tiedostonimi:", PAKOLLINEN);
         io.tulosta("Tulostetaan tiedostoon...");
-        if (vp.bibtexTiedostoon(tiedostonimi)){
+        if (vp.bibtexTiedostoon(tiedostonimi)) {
             io.tulosta("Valmis!");
         } else {
             io.tulosta("Virhe tiedostoa kirjoittaessa.");
