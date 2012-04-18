@@ -46,7 +46,7 @@ public class TekstiUI {
         } else {
             kysyKirjanTiedot();
         }
-        
+        kysyValinnaisetTiedot();
         kysyKirjoittajat();
         kysyTunniste();
         vp.tallennaViite();
@@ -109,20 +109,24 @@ public class TekstiUI {
     }
     
     private void kysyValinnaisetTiedot(){
+        int kuukausi = io.lueLuku("Julkaisukuukausi:", VALINNAINEN);
+        String lisatiedot = io.lueSyote("Lisätiedot:", VALINNAINEN);
         
+        vp.lisaaValinnaisetTiedot(kuukausi, lisatiedot);
     }
 
     private void kysyKirjoittajat() {
-        io.tulosta("Anna kirjoittajat, tai anna tyhjä lopettaaksesi");
+        io.tulosta("Lisätään kirjoittajat");
+        String etunimi = io.lueSyote("Etunimi:", PAKOLLINEN);
+        String sukunimi = io.lueSyote("Sukunimi:", PAKOLLINEN);
+        vp.lisaaKirjoittaja(etunimi, sukunimi);
+        
+        io.tulosta("Anna lisää kirjoittajia, tyhjä lopettaa");
         while (true) {
-            String etunimi = io.lueSyote("Etunimi:", VALINNAINEN);
-            if (etunimi == null) {
-                break;
-            }
-            String sukunimi = io.lueSyote("Sukunimi:", VALINNAINEN);
-            if (sukunimi == null) {
-                break;
-            }
+            etunimi = io.lueSyote("Etunimi:", VALINNAINEN);
+            if (etunimi == null) break;
+            sukunimi = io.lueSyote("Sukunimi:", VALINNAINEN);
+            if (sukunimi == null) break;
             vp.lisaaKirjoittaja(etunimi, sukunimi);
         }
     }
