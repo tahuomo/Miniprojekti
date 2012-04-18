@@ -6,14 +6,19 @@ import java.util.List;
 public class Viitepalvelu {
     private Viitehallinta viitehallinta;
     private Viite viite;
+    private BibTexGeneraattori bibgen;
+    private TiedostonKirjoittaja kirjoittaja;
     
-    public Viitepalvelu(Viitehallinta viitehallinta){
+    public Viitepalvelu(Viitehallinta viitehallinta, BibTexGeneraattori bibgen, TiedostonKirjoittaja kirjoittaja){
         this.viitehallinta = viitehallinta;
+        this.bibgen = bibgen;
+        this.kirjoittaja = kirjoittaja;
     }
     
     public void teeViite(String tyyppi){
         viite = new Viite(tyyppi);
     }
+    
     
     public void lisaaViitteenYleisetTiedot(String otsikko, int julkaisuvuosi){
         viite.setOtsikko(otsikko);
@@ -51,6 +56,10 @@ public class Viitepalvelu {
         viite.lisaaKirjoittaja(k); 
     }
     
+    public void lisaaViitteenTunniste(String tunniste) {
+        viite.setTunniste(tunniste);
+    }
+    
     public void tallennaViite(){
         viitehallinta.tallennaViite(viite);
     }
@@ -64,7 +73,7 @@ public class Viitepalvelu {
         
         return viitelista;
     }
-
+    
     public Viite getViite() {
         return viite;
     }
@@ -92,10 +101,18 @@ public class Viitepalvelu {
         return tunniste;
         
     }
-
-    public void lisaaViitteenTunniste(String tunniste) {
-        viite.setTunniste(tunniste);
+    
+    
+    public boolean bibtexTiedostoon(String tiedostonimi){
+        List<Viite> viitteet = viitehallinta.listaaViitteet();
+        String bibtex = "\n";
+        for (Viite v : viitteet){
+            bibtex += bibgen.teeViitteestaBibtex(v) + "\n";
+        }
+        return kirjoittaja.kirjoitaTiedostoon(bibtex, tiedostonimi);
     }
+
+  
  
    
 }
