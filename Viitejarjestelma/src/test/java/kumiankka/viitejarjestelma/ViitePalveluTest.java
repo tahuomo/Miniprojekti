@@ -23,7 +23,7 @@ public class ViitePalveluTest {
     @Before
     public void setUp() {
         this.tallennusStub = new Viitekirjanpito();
-        this.viitepalvelu = new Viitepalvelu(this.tallennusStub);
+        this.viitepalvelu = new Viitepalvelu(this.tallennusStub, null, null);
 
         this.viitepalvelu.teeViite("artikkeli");
         this.viitepalvelu.lisaaViitteenYleisetTiedot("Otsikko", 2012);
