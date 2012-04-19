@@ -214,12 +214,12 @@ public class ViitePalveluTest {
         this.viitepalveluA.tallennaViite();
         this.viitepalveluA.bibtexTiedostoon("tiedostonimi");
         
-        verify(this.mockTallentaja).kirjoitaTiedostoon("\n@article{tunniste,\n" +
+        verify(this.mockTallentaja).kirjoitaTiedostoon(eq("\n@article{tunniste,\n" +
                 "author = {Luukkainen, Matti},\n" +
                 "title = {otsikko},\n" +
                 "journal = {Lehti},\n"+
                 "year = {2012},\n" +
-                "}\n" //toinen pois?
-                , "tiedostonimi");
+                "}\n")
+                , eq("tiedostonimi"));
     }
 }
