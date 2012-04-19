@@ -77,7 +77,7 @@ public class BibTexGeneraattoriTest {
 
     @Test
     public void viitteenBibtexStringGeneroidaanOikein() {
-        String bibtex = "@tyyppi{LV12,\n"
+        String bibtex = "\n@tyyppi{LV12,\n"
                 + "author = {Luukkainen, Matti and Vihavainen, Arto},\n"
                 + "title = {Otsikko},\n"
                 + "journal = {Lehden nimi},\n"                
@@ -99,7 +99,7 @@ public class BibTexGeneraattoriTest {
     
     @Test
     public void tyhjakenttaisenViitteenBibtexStringGeneroidaanOikein() {
-        String bibtex = "@tyyppi{VL12,\n"
+        String bibtex = "\n@tyyppi{VL12,\n"
                 + "author = {Luukkainen, Matti and Vihavainen, Arto},\n"
                 + "title = {Otsikko},\n"
                 + "year = {2012},\n"
@@ -111,7 +111,7 @@ public class BibTexGeneraattoriTest {
     @Test
     public void bibtexStringOikeinKunVikaSivuTyhja() {
         this.viite.setVikaSivu(0);
-        String bibtex = "@tyyppi{LV12,\n"
+        String bibtex = "\n@tyyppi{LV12,\n"
                 + "author = {Luukkainen, Matti and Vihavainen, Arto},\n"
                 + "title = {Otsikko},\n"
                 + "journal = {Lehden nimi},\n"                
