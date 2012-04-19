@@ -12,8 +12,8 @@ public class TekstiUI {
     }
 
     public void run() {
-        io.tulosta("Viitekirjanpito Hieno Ohjelma versio J.34H");
-        io.tulosta("Kirjoita auta näyttääksesi komennot");
+        io.tulosta("Viitekirjanpito Hieno Ohjelma versio 0.324");
+        io.tulosta("Kirjoita auta näyttääksesi komennot\n");
         while (true) {
             String komento = io.lueSyote(">", VALINNAINEN);
             if (komento == null) {
@@ -36,7 +36,7 @@ public class TekstiUI {
         }
     }
 
-    private void lisaaViite() {
+    public void lisaaViite() {
         String tyyppi = kysyViitteenTyyppi();
         vp.teeViite(tyyppi);
         kysyYleisetTiedot();
@@ -55,7 +55,7 @@ public class TekstiUI {
         io.tulosta("Uusi viite lisättiin!");
     }
 
-    private String kysyViitteenTyyppi() {
+    public String kysyViitteenTyyppi() {
         int valinta = -1;
         while (valinta < 1 || valinta > 3) {
             io.tulosta("Valitse viitteen tyyppi:\n");
@@ -71,13 +71,13 @@ public class TekstiUI {
         }
     }
 
-    private void kysyYleisetTiedot() {
+    public void kysyYleisetTiedot() {
         String otsikko = io.lueSyote("Otsikko:", PAKOLLINEN);
         int vuosi = io.lueLuku("Julkaisuvuosi:", PAKOLLINEN);
         vp.lisaaViitteenYleisetTiedot(otsikko, vuosi);
     }
 
-    private void kysyKirjanTiedot() {
+    public void kysyKirjanTiedot() {
         String julkaisija = io.lueSyote("Julkaisija:", PAKOLLINEN);
         String osoite = io.lueSyote("Julkaisijan osoite:", VALINNAINEN);
         String painos = io.lueSyote("Painos:", VALINNAINEN);
@@ -86,7 +86,7 @@ public class TekstiUI {
         vp.lisaaKirjanTiedot(julkaisija, osoite, painos, sarja);
     }
 
-    private void kysyKjulkaisunTiedot() {
+    public void kysyKjulkaisunTiedot() {
         String kirjanNimi = io.lueSyote("Kirjan nimi:", PAKOLLINEN);
         String julkaisija = io.lueSyote("Julkaisija:", VALINNAINEN);
         String osoite = io.lueSyote("Julkaisijan osoite:", VALINNAINEN);
@@ -99,7 +99,7 @@ public class TekstiUI {
                 aloitusSivu, lopetusSivu, organisaatio);
     }
 
-    private void kysyArtikkelinTiedot() {
+    public void kysyArtikkelinTiedot() {
         String lehdenNimi = io.lueSyote("Lehden nimi:", PAKOLLINEN);
         int lehdenNumero = io.lueLuku("Lehden numero:", VALINNAINEN);
         int aloitusSivu = io.lueLuku("Ensimmäinen sivu:", VALINNAINEN);
@@ -109,15 +109,15 @@ public class TekstiUI {
         vp.lisaaArtikkelinTiedot(lehdenNimi, lehdenNumero, aloitusSivu, lopetusSivu, julkaisija);
     }
 
-    private void kysyValinnaisetTiedot() {
+    public void kysyValinnaisetTiedot() {
         int kuukausi = io.lueLuku("Julkaisukuukausi:", VALINNAINEN);
         String lisatiedot = io.lueSyote("Lisätiedot:", VALINNAINEN);
 
         vp.lisaaValinnaisetTiedot(kuukausi, lisatiedot);
     }
 
-    private void kysyKirjoittajat() {
-        io.tulosta("Lisätään kirjoittajat");
+    public void kysyKirjoittajat() {
+        io.tulosta("\nLisätään kirjoittajat");
         String etunimi = io.lueSyote("Etunimi:", PAKOLLINEN);
         String sukunimi = io.lueSyote("Sukunimi:", PAKOLLINEN);
         vp.lisaaKirjoittaja(etunimi, sukunimi);
@@ -136,7 +136,7 @@ public class TekstiUI {
         }
     }
 
-    private void kerroKomennot() {
+    public void kerroKomennot() {
         String komennot = "\tauta\t- näyttää komennot\n"
                 + "\tuusi\t- lisää uusi viite\n"
                 + "\tbibtex\t- tallenna viitteet bibtex-tiedostoon\n"
@@ -145,8 +145,8 @@ public class TekstiUI {
         io.tulosta(komennot);
     }
 
-    private void listaaViitteet() {
-        io.tulosta("Viitteet:");
+    public void listaaViitteet() {
+        io.tulosta("\nViitteet:");
         String viitteet = vp.listaaViitteet();
         if (viitteet.isEmpty()) {
             io.tulosta("Ei vielä lisättyjä viitteitä");
@@ -155,7 +155,7 @@ public class TekstiUI {
         }
     }
 
-    private void kysyTunniste() {
+    public void kysyTunniste() {
         String tunniste = vp.generoiTunniste();
         io.tulosta("Tunnisteeksi generoitiin " + tunniste);
         while (true) {
@@ -172,7 +172,7 @@ public class TekstiUI {
         vp.lisaaViitteenTunniste(tunniste);
     }
 
-    private void kirjoitaBibtexTiedosto() {
+    public void kirjoitaBibtexTiedosto() {
         String tiedostonimi = io.lueSyote("Anna tiedostonimi:", PAKOLLINEN);
         io.tulosta("Tulostetaan tiedostoon...");
         if (vp.bibtexTiedostoon(tiedostonimi)) {
