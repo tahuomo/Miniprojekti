@@ -8,7 +8,7 @@ public class BibTexGeneraattori {
     }
 
     public String teeViitteestaBibtex(Viite viite) {
-        String bibtex = "@" + viite.getTyyppi() + "{" + viite.getTunniste() + ",\n";
+        String bibtex = "\n@" + viite.getTyyppi() + "{" + viite.getTunniste() + ",\n";
         bibtex += this.teeKirjoittajistaBibtex(viite)
                 + this.teeOtsikostaBibtex(viite)
                 + this.teeLehdenNimestaBibtex(viite)

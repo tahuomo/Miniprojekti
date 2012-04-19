@@ -37,7 +37,7 @@ public class Viitepalvelu {
         viite.setPainos(painos);
         viite.setSarja(sarja);
     }
-
+    
     public void lisaaKonferenssijulkaisunTiedot(String kirjanNimi, String julkaisija, String osoite, String sarja, int aloitusSivu, int lopetusSivu, String organisaatio) {
         viite.setKirjanNimi(kirjanNimi);
         viite.setJulkaisija(julkaisija);
@@ -47,12 +47,12 @@ public class Viitepalvelu {
         viite.setVikaSivu(lopetusSivu);
         viite.setOrganisaatio(organisaatio);
     }
-
+    
     public void lisaaValinnaisetTiedot(int kuukausi, String lisatieto) {
         viite.setKuukausi(kuukausi);
         viite.setLisatieto(lisatieto);
     }
-
+    
     public void lisaaKirjoittaja(String etunimi, String sukunimi) {
         Kirjoittaja k = new Kirjoittaja(etunimi, sukunimi);
         k.setViite(viite);
@@ -107,9 +107,9 @@ public class Viitepalvelu {
 
     public boolean bibtexTiedostoon(String tiedostonimi) {
         List<Viite> viitteet = viitehallinta.listaaViitteet();
-        String bibtex = "\n";
+        String bibtex = "";
         for (Viite v : viitteet) {
-            bibtex += bibgen.teeViitteestaBibtex(v) + "\n";
+            bibtex += bibgen.teeViitteestaBibtex(v);
         }
         return tiedostonkirjoittaja.kirjoitaTiedostoon(bibtex, tiedostonimi);
     }
