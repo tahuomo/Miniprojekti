@@ -78,20 +78,20 @@ public class BibTexGeneraattoriTest {
     @Test
     public void viitteenBibtexStringGeneroidaanOikein() {
         String bibtex = "\n@tyyppi{LV12,\n"
-                + "author = {Luukkainen, Matti and Vihavainen, Arto},\n"
-                + "title = {Otsikko},\n"
-                + "journal = {Lehden nimi},\n"                
-                + "publisher = {Julkaisija},\n"
-                + "year = {2012},\n"
-                + "month = {2},\n"
-                + "pages = {1--3},\n"
-                + "volume = {1},\n"
-                + "address = {Osoite},\n"
-                + "organization = {Organisaatio},\n"
-                + "booktitle = {Kirjan nimi},\n"
-                + "series = {Sarja},\n"
-                + "edition = {Painos},\n"
-                + "note = {Testaaminen on kivaa},\n"
+                + "\tauthor = {Luukkainen, Matti and Vihavainen, Arto},\n"
+                + "\ttitle = {Otsikko},\n"
+                + "\tjournal = {Lehden nimi},\n"                
+                + "\tpublisher = {Julkaisija},\n"
+                + "\tyear = {2012},\n"
+                + "\tmonth = {2},\n"
+                + "\tpages = {1--3},\n"
+                + "\tvolume = {1},\n"
+                + "\taddress = {Osoite},\n"
+                + "\torganization = {Organisaatio},\n"
+                + "\tbooktitle = {Kirjan nimi},\n"
+                + "\tseries = {Sarja},\n"
+                + "\tedition = {Painos},\n"
+                + "\tnote = {Testaaminen on kivaa},\n"
                 + "}\n";
         
         assertEquals(this.bg.teeViitteestaBibtex(this.viite), bibtex);
@@ -100,9 +100,9 @@ public class BibTexGeneraattoriTest {
     @Test
     public void tyhjakenttaisenViitteenBibtexStringGeneroidaanOikein() {
         String bibtex = "\n@tyyppi{VL12,\n"
-                + "author = {Luukkainen, Matti and Vihavainen, Arto},\n"
-                + "title = {Otsikko},\n"
-                + "year = {2012},\n"
+                + "\tauthor = {Luukkainen, Matti and Vihavainen, Arto},\n"
+                + "\ttitle = {Otsikko},\n"
+                + "\tyear = {2012},\n"
                 + "}\n";
         
         assertEquals(this.bg.teeViitteestaBibtex(this.tyhjaViite), bibtex);
@@ -112,20 +112,20 @@ public class BibTexGeneraattoriTest {
     public void bibtexStringOikeinKunVikaSivuTyhja() {
         this.viite.setVikaSivu(0);
         String bibtex = "\n@tyyppi{LV12,\n"
-                + "author = {Luukkainen, Matti and Vihavainen, Arto},\n"
-                + "title = {Otsikko},\n"
-                + "journal = {Lehden nimi},\n"                
-                + "publisher = {Julkaisija},\n"
-                + "year = {2012},\n"
-                + "month = {2},\n"
-                + "pages = {1},\n"
-                + "volume = {1},\n"
-                + "address = {Osoite},\n"
-                + "organization = {Organisaatio},\n"
-                + "booktitle = {Kirjan nimi},\n"
-                + "series = {Sarja},\n"
-                + "edition = {Painos},\n"
-                + "note = {Testaaminen on kivaa},\n"
+                + "\tauthor = {Luukkainen, Matti and Vihavainen, Arto},\n"
+                + "\ttitle = {Otsikko},\n"
+                + "\tjournal = {Lehden nimi},\n"                
+                + "\tpublisher = {Julkaisija},\n"
+                + "\tyear = {2012},\n"
+                + "\tmonth = {2},\n"
+                + "\tpages = {1},\n"
+                + "\tvolume = {1},\n"
+                + "\taddress = {Osoite},\n"
+                + "\torganization = {Organisaatio},\n"
+                + "\tbooktitle = {Kirjan nimi},\n"
+                + "\tseries = {Sarja},\n"
+                + "\tedition = {Painos},\n"
+                + "\tnote = {Testaaminen on kivaa},\n"
                 + "}\n";
         
         assertEquals(this.bg.teeViitteestaBibtex(this.viite), bibtex);

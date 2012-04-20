@@ -215,10 +215,10 @@ public class ViitePalveluTest {
         this.viitepalveluA.bibtexTiedostoon("tiedostonimi");
         
         verify(this.mockTallentaja).kirjoitaTiedostoon(eq("\n@article{tunniste,\n" +
-                "author = {Luukkainen, Matti},\n" +
-                "title = {otsikko},\n" +
-                "journal = {Lehti},\n"+
-                "year = {2012},\n" +
+                "\tauthor = {Luukkainen, Matti},\n" +
+                "\ttitle = {otsikko},\n" +
+                "\tjournal = {Lehti},\n"+
+                "\tyear = {2012},\n" +
                 "}\n")
                 , eq("tiedostonimi"));
     }

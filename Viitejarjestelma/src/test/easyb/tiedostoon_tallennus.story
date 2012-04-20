@@ -15,10 +15,10 @@ scenario "tiedoston tallentaminen onnistuu", {
     
     when 'validi tiedostonimi syotetty', {
         when(mockTallennus.kirjoitaTiedostoon("\n@article{L2012,\n" +
-                "author = {Luukkainen, Matti},\n" +
-                "title = {Otsikko},\n" +
-                "journal = {Lehti},\n"+
-                "year = {2012},\n" +
+                "\tauthor = {Luukkainen, Matti},\n" +
+                "\ttitle = {Otsikko},\n" +
+                "\tjournal = {Lehti},\n"+
+                "\tyear = {2012},\n" +
                 "}\n"
                 , "tiedostonimi")).thenReturn(true)
         ui.run()

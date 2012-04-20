@@ -29,7 +29,7 @@ public class BibTexGeneraattori {
     }
 
     private String teeKirjoittajistaBibtex(Viite viite) {
-        String bibtex = "author = {";
+        String bibtex = "\tauthor = {";
         List<Kirjoittaja> kirjoittajat = viite.getKirjoittajat();
 
         for (int i = 0; i < kirjoittajat.size(); i++) {
@@ -113,7 +113,7 @@ public class BibTexGeneraattori {
             return "";
         }
 
-        return kentta + " = {" + tieto + "},\n";
+        return "\t" + kentta + " = {" + tieto + "},\n";
     }
 
     private String intTiedostaBibtex(String kentta, int tieto) {
