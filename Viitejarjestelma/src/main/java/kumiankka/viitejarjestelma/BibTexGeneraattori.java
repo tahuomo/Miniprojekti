@@ -81,7 +81,7 @@ public class BibTexGeneraattori {
     }
 
     private String teeLehdenNumerostaBibtex(Viite viite) {
-        return this.intTiedostaBibtex("number", viite.getLehdenNumero());
+        return this.intTiedostaBibtex("volume", viite.getLehdenNumero());
     }
 
     private String teeOsoitteestaBibtex(Viite viite) {
