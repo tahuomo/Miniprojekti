@@ -12,8 +12,7 @@ public class TekstiUI {
     }
 
     public void run() {
-        io.tulosta("Viitekirjanpito Hieno Ohjelma versio 0.324");
-        io.tulosta("Kirjoita auta näyttääksesi komennot\n");
+        io.tulosta("Viitehallinan Super Hyper 1337 Ohjelma");
         while (true) {
             String komento = io.lueSyote(">", VALINNAINEN);
             if (komento == null) {
@@ -28,11 +27,11 @@ public class TekstiUI {
                 lisaaViite();
             } else if (komento.equals("listaa")) {
                 listaaViitteet();
-            } else if (komento.equals("auta")) {
-                kerroKomennot();
             } else if (komento.equals("bibtex")) {
                 kirjoitaBibtexTiedosto();
-            }
+            } else {
+                kerroKomennot();
+            }    
         }
     }
 
@@ -53,6 +52,7 @@ public class TekstiUI {
         kysyTunniste();
         vp.tallennaViite();
         io.tulosta("Uusi viite lisättiin!");
+        io.tulosta("Lisättiin: " + vp.nykyinenViite());
     }
 
     public String kysyViitteenTyyppi() {
@@ -173,12 +173,17 @@ public class TekstiUI {
     }
 
     public void kirjoitaBibtexTiedosto() {
-        String tiedostonimi = io.lueSyote("Anna tiedostonimi:", PAKOLLINEN);
-        io.tulosta("Tulostetaan tiedostoon...");
-        if (vp.bibtexTiedostoon(tiedostonimi)) {
-            io.tulosta("Valmis!");
+        String tiedostonimi = io.lueSyote("Anna tiedostonimi, tyhjä tulostaa ruudulle:", VALINNAINEN);
+        if (tiedostonimi == null){
+            io.tulosta(vp.bibtexRuudulle());
         } else {
-            io.tulosta("Virhe tiedostoa kirjoittaessa.");
+            io.tulosta("Tulostetaan tiedostoon...");
+            if (vp.bibtexTiedostoon(tiedostonimi)) {
+                io.tulosta("Valmis!");
+            } else {
+                io.tulosta("Virhe tiedostoa kirjoittaessa.");
         }
+        }
+        
     }
 }

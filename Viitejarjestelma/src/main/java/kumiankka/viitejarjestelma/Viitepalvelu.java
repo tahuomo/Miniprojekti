@@ -104,13 +104,25 @@ public class Viitepalvelu {
         return tunniste;
 
     }
+    
+    public String nykyinenViite(){
+        return viite.toString();
+    }
 
     public boolean bibtexTiedostoon(String tiedostonimi) {
+        return tiedostonkirjoittaja.kirjoitaTiedostoon(viitteetBibtexiksi(), tiedostonimi);
+    }
+    
+    public String bibtexRuudulle(){
+        return viitteetBibtexiksi();
+    }
+    
+    private String viitteetBibtexiksi() {
         List<Viite> viitteet = viitehallinta.listaaViitteet();
         String bibtex = "";
         for (Viite v : viitteet) {
             bibtex += bibgen.teeViitteestaBibtex(v);
         }
-        return tiedostonkirjoittaja.kirjoitaTiedostoon(bibtex, tiedostonimi);
+        return bibtex;
     }
 }
