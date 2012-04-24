@@ -7,7 +7,7 @@ description 'Kayttaja voi listata viitteet'
 
 scenario "kayttaja voi listata viitteet", {
     given 'komento "listaa" valittu', {
-        io = new StubIO("listaa", "lopeta")
+        io = new StubIO("listaa", "", "lopeta")
         vk = new Viitekirjanpito()
         vp = new Viitepalvelu(vk, null, null)
         ui = new TekstiUI(io, vp)

@@ -138,14 +138,14 @@ public class ViitePalveluTest {
 
     @Test
     public void olemattomienViitteidenListausToimii() {
-        assertEquals(this.viitepalveluA.listaaViitteet(), "");
+        assertEquals(this.viitepalveluA.listaaViitteet(null), "");
     }
 
     @Test
     public void viitteidenListausToimii() {
         this.viitepalveluA.tallennaViite();
 
-        assertEquals(this.viitepalveluA.listaaViitteet(), "[1] " + this.artikkeli.toString() + "\n");
+        assertEquals(this.viitepalveluA.listaaViitteet(null), "[1] " + this.artikkeli.toString() + "\n");
     }
 
     @Test
