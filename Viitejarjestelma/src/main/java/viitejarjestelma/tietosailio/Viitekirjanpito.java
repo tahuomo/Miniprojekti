@@ -35,6 +35,13 @@ public class Viitekirjanpito implements Viitehallinta {
 
     @Override
     public boolean poistaViite(String tunniste) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Viite poistettava = etsiTunniste(tunniste);
+        
+        if(poistettava == null) {
+            return false;
+        }
+        
+        viitteet.remove(poistettava);
+        return true;
     }
 }
