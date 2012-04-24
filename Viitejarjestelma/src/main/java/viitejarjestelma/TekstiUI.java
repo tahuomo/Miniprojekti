@@ -155,7 +155,7 @@ public class TekstiUI {
                 + "\tuusi\t- lisää uusi viite\n"
                 + "\tbibtex\t- tallenna viitteet bibtex-tiedostoon\n"
                 + "\tlistaa\t- listaa viitteet\n"
-                + "\tpoista\t- poista viite"
+                + "\tpoista\t- poista viite\n"
                 + "\tlopeta\t- lopeta ohjelma";
         io.tulosta(komennot);
     }
