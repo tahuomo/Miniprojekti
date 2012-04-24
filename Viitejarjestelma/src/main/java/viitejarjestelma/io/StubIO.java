@@ -1,5 +1,8 @@
-package kumiankka.viitejarjestelma;
+package viitejarjestelma.io;
 
+
+
+import viitejarjestelma.io.IO;
 import java.util.ArrayList;
 
 public class StubIO implements IO {

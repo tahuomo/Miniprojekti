@@ -1,5 +1,11 @@
-package kumiankka.viitejarjestelma;
+package viitejarjestelma;
 
+import viitejarjestelma.logiikka.BibTexGeneraattori;
+import viitejarjestelma.io.Tiedostonkasittely;
+import viitejarjestelma.io.TiedostonKirjoittaja;
+import viitejarjestelma.logiikka.Viitepalvelu;
+import viitejarjestelma.tietokanta.Viitetietokanta;
+import viitejarjestelma.io.KonsoliIO;
 import org.hsqldb.Server;
 
 public class App {

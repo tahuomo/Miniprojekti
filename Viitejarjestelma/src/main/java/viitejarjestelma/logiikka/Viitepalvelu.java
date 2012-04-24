@@ -1,6 +1,8 @@
-package kumiankka.viitejarjestelma;
+package viitejarjestelma.logiikka;
 
+import viitejarjestelma.tietokanta.Viitehallinta;
 import java.util.List;
+import viitejarjestelma.io.Tiedostonkasittely;
 
 public class Viitepalvelu {
     private Viitehallinta viitehallinta;

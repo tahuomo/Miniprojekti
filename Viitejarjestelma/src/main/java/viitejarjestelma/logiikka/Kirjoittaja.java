@@ -1,4 +1,4 @@
-package kumiankka.viitejarjestelma;
+package viitejarjestelma.logiikka;
 
 import java.io.Serializable;
 import javax.persistence.Column;

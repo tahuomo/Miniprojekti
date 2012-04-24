@@ -1,4 +1,7 @@
-import kumiankka.viitejarjestelma.*
+import viitejarjestelma.*
+import viitejarjestelma.io.*
+import viitejarjestelma.logiikka.*
+import viitejarjestelma.tietokanta.*
 
 description 'Kayttaja voi lisata viitteen valideilla tiedoilla'
 

@@ -1,4 +1,4 @@
-package kumiankka.viitejarjestelma;
+package viitejarjestelma.io;
 
 public interface IO {
     void tulosta(String toPrint);

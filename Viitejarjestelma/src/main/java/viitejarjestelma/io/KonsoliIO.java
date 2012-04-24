@@ -1,4 +1,4 @@
-package kumiankka.viitejarjestelma;
+package viitejarjestelma.io;
 
 import java.util.Scanner;
 

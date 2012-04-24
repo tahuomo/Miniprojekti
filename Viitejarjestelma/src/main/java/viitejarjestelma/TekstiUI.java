@@ -1,4 +1,8 @@
-package kumiankka.viitejarjestelma;
+package viitejarjestelma;
+
+import viitejarjestelma.logiikka.Viitepalvelu;
+import viitejarjestelma.io.IO;
+import viitejarjestelma.io.IO;
 
 public class TekstiUI {
     private static boolean PAKOLLINEN = true;
@@ -31,7 +35,7 @@ public class TekstiUI {
                 kirjoitaBibtexTiedosto();
             } else {
                 kerroKomennot();
-            }    
+            }
         }
     }
 
@@ -174,7 +178,7 @@ public class TekstiUI {
 
     public void kirjoitaBibtexTiedosto() {
         String tiedostonimi = io.lueSyote("Anna tiedostonimi, tyhjä tulostaa ruudulle:", VALINNAINEN);
-        if (tiedostonimi == null){
+        if (tiedostonimi == null) {
             io.tulosta(vp.bibtexRuudulle());
         } else {
             io.tulosta("Tulostetaan tiedostoon...");
@@ -182,8 +186,8 @@ public class TekstiUI {
                 io.tulosta("Valmis!");
             } else {
                 io.tulosta("Virhe tiedostoa kirjoittaessa.");
+            }
         }
-        }
-        
+
     }
 }

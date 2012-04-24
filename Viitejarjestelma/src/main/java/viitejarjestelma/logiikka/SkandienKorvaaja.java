@@ -1,4 +1,4 @@
-package kumiankka.viitejarjestelma;
+package viitejarjestelma.logiikka;
 
 public class SkandienKorvaaja {
     public static String skanditBibtexYstavallisiksi(String teksti) {

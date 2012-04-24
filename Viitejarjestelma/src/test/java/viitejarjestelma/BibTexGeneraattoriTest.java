@@ -1,5 +1,8 @@
-package kumiankka.viitejarjestelma;
+package viitejarjestelma;
 
+import viitejarjestelma.logiikka.BibTexGeneraattori;
+import viitejarjestelma.logiikka.Kirjoittaja;
+import viitejarjestelma.logiikka.Viite;
 import java.util.List;
 import java.util.ArrayList;
 import org.junit.After;

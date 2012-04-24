@@ -1,5 +1,7 @@
-package kumiankka.viitejarjestelma;
+package viitejarjestelma.logiikka;
 
+import viitejarjestelma.logiikka.Kirjoittaja;
+import viitejarjestelma.logiikka.Viite;
 import java.util.List;
 
 public class BibTexGeneraattori {

@@ -1,5 +1,11 @@
-package kumiankka.viitejarjestelma;
+package viitejarjestelma;
 
+import viitejarjestelma.io.Tiedostonkasittely;
+import viitejarjestelma.logiikka.BibTexGeneraattori;
+import viitejarjestelma.logiikka.Kirjoittaja;
+import viitejarjestelma.logiikka.Viitepalvelu;
+import viitejarjestelma.logiikka.Viite;
+import viitejarjestelma.tietokanta.Viitekirjanpito;
 import java.util.List;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -123,7 +129,7 @@ public class ViitePalveluTest {
     public void viitteenTallennusToimii() {
         this.viitepalveluA.tallennaViite();
 
-        assertEquals(this.artikkeli, this.tallennusStub.viitteet.get(0));
+        assertEquals(this.artikkeli, this.tallennusStub.getViitteet().get(0));
     }
 
     @Test

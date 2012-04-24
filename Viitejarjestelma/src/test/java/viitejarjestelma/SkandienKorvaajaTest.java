@@ -1,5 +1,6 @@
-package kumiankka.viitejarjestelma;
+package viitejarjestelma;
 
+import viitejarjestelma.logiikka.SkandienKorvaaja;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

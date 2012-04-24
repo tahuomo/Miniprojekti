@@ -1,4 +1,7 @@
-import kumiankka.viitejarjestelma.*
+import viitejarjestelma.*
+import viitejarjestelma.io.*
+import viitejarjestelma.logiikka.*
+import viitejarjestelma.tietokanta.*
 import static org.mockito.Mockito.*
 
 description 'Kayttaja voi tallentaa BibTex-tiedoston'

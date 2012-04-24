@@ -1,7 +1,8 @@
-package kumiankka.viitejarjestelma;
+package viitejarjestelma.io;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import viitejarjestelma.io.Tiedostonkasittely;
 
 public class TiedostonKirjoittaja implements Tiedostonkasittely {
     private static final String PAATE = ".bib";
