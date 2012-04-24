@@ -9,11 +9,13 @@ public class Viitepalvelu {
     private Viite viite;
     private BibTexGeneraattori bibgen;
     private Tiedostonkasittely tiedostonkirjoittaja;
+    private HakukomentoTehdas hakukomennot;
 
     public Viitepalvelu(Viitehallinta viitehallinta, BibTexGeneraattori bibgen, Tiedostonkasittely tiedostonkirjoittaja) {
         this.viitehallinta = viitehallinta;
         this.bibgen = bibgen;
         this.tiedostonkirjoittaja = tiedostonkirjoittaja;
+        this.hakukomennot = new HakukomentoTehdas();
     }
 
     public void teeViite(String tyyppi) {
@@ -69,15 +71,15 @@ public class Viitepalvelu {
         viitehallinta.tallennaViite(viite);
     }
 
-    public String listaaViitteet() {
-        List<Viite> viitteet = viitehallinta.listaaViitteet();
-        String viitelista = "";
-        for (int i = 0; i < viitteet.size(); i++) {
-            viitelista += "[" + (i + 1) + "] " + viitteet.get(i).toString() + "\n";
-        }
-
-        return viitelista;
-    }
+//    public String listaaViitteet() {
+//        List<Viite> viitteet = viitehallinta.listaaViitteet();
+//        String viitelista = "";
+//        for (int i = 0; i < viitteet.size(); i++) {
+//            viitelista += "[" + (i + 1) + "] " + viitteet.get(i).toString() + "\n";
+//        }
+//
+//        return viitelista;
+//    }
 
     public Viite getViite() {
         return viite;
@@ -130,5 +132,21 @@ public class Viitepalvelu {
             bibtex += bibgen.teeViitteestaBibtex(v);
         }
         return bibtex;
+    }
+
+    public String listaaViitteet(String hakuehto) {
+        List<Viite> haunTulos = viitehallinta.listaaViitteet();
+        
+        if (hakuehto != null){
+            String[] parametrit = hakuehto.split("=");
+            if (parametrit.length == 2) {
+                haunTulos = hakukomennot.hae(parametrit[0]).suorita(haunTulos, parametrit[1]);
+            }
+        } 
+        String viitelista = "";
+        for (int i = 0; i < haunTulos.size(); i++) {
+            viitelista += "[" + (i + 1) + "] " + haunTulos.get(i).toString() + "\n";
+        }
+        return viitelista;
     }
 }
