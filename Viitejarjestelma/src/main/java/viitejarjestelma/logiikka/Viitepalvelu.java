@@ -10,6 +10,7 @@ public class Viitepalvelu {
     private BibTexGeneraattori bibgen;
     private Tiedostonkasittely tiedostonkirjoittaja;
     private HakukomentoTehdas hakukomennot;
+    private List<Viite> viimeHaku;
 
     public Viitepalvelu(Viitehallinta viitehallinta, BibTexGeneraattori bibgen, Tiedostonkasittely tiedostonkirjoittaja) {
         this.viitehallinta = viitehallinta;
@@ -118,15 +119,19 @@ public class Viitepalvelu {
     }
 
     public boolean bibtexTiedostoon(String tiedostonimi) {
-        return tiedostonkirjoittaja.kirjoitaTiedostoon(viitteetBibtexiksi(), tiedostonimi);
+        List<Viite> viitteet = viitehallinta.listaaViitteet();
+        return tiedostonkirjoittaja.kirjoitaTiedostoon(viitteetBibtexiksi(viitteet), tiedostonimi);
     }
     
     public String bibtexRuudulle(){
-        return viitteetBibtexiksi();
+        if (viimeHaku == null) return viitteetBibtexiksi(viitehallinta.listaaViitteet());
+        String bibtexString = viitteetBibtexiksi(viimeHaku);
+        viimeHaku = null;
+        return bibtexString;
     }
     
-    private String viitteetBibtexiksi() {
-        List<Viite> viitteet = viitehallinta.listaaViitteet();
+    private String viitteetBibtexiksi(List<Viite> viitteet) {
+        
         String bibtex = "";
         for (Viite v : viitteet) {
             bibtex += bibgen.teeViitteestaBibtex(v);
@@ -143,6 +148,7 @@ public class Viitepalvelu {
                 haunTulos = hakukomennot.hae(parametrit[0]).suorita(haunTulos, parametrit[1]);
             }
         } 
+        viimeHaku = haunTulos;
         String viitelista = "";
         for (int i = 0; i < haunTulos.size(); i++) {
             viitelista += "[" + (i + 1) + "] " + haunTulos.get(i).toString() + "\n";
