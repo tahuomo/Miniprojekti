@@ -4,6 +4,7 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>viitejarjestelma.logiikka.Kirjoittaja</class>
     <class>viitejarjestelma.logiikka.Viite</class>
+    <class>viitejarjestelma.logiikka.Tagi</class>
     <properties>
       <property name="hibernate.connection.username" value="SA"/>
       <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
