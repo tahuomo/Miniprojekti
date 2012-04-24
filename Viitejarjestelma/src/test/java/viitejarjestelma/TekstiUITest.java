@@ -1,13 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package viitejarjestelma;
 
-import viitejarjestelma.TekstiUI;
 import viitejarjestelma.logiikka.Viitepalvelu;
 import viitejarjestelma.io.IO;
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -103,6 +97,7 @@ public class TekstiUITest {
                 + "\tuusi\t- lisää uusi viite\n"
                 + "\tbibtex\t- tallenna viitteet bibtex-tiedostoon\n"
                 + "\tlistaa\t- listaa viitteet\n"
+                + "\tpoista\t- poista viite\n"
                 + "\tlopeta\t- lopeta ohjelma";
          
          ui.kerroKomennot();

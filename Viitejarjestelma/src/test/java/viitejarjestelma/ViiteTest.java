@@ -10,11 +10,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-
 public class ViiteTest {
     Viite a;
     ArrayList<Kirjoittaja> kirjoittajat;
-    
+
     public ViiteTest() {
     }
 
@@ -25,7 +24,7 @@ public class ViiteTest {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-    
+
     @Before
     public void setUp() {
         kirjoittajat = new ArrayList<Kirjoittaja>();
@@ -42,41 +41,39 @@ public class ViiteTest {
         a.setKirjoittajat(kirjoittajat);
         a.setTunniste("ML2012");
     }
-    
+
     @After
     public void tearDown() {
     }
-    
+
     @Test
     public void tyhjaKonstruktoriLuoOlion() {
         a = new Viite();
 
         assertNotNull(a);
     }
-    
+
     @Test
-    public void konstruktoriLuoOlion() {        
+    public void konstruktoriLuoOlion() {
         assertNotNull(a);
     }
-    
+
     @Test
     public void kirjoittajatTulevat() {
         assertNotNull(a.getKirjoittajat());
     }
-    
+
     @Test
     public void toStringToimiiYhdellaKirjoittajalla() {
-        String tulos = "article: M. Luukkainen: Matin Seikkailut - Julkaistu 2012"
-                        + " - Tunniste: ML2012";
+        String tulos = "ID: ML2012, article: M. Luukkainen: Matin Seikkailut - Julkaistu 2012";
         assertEquals(tulos, a.toString());
     }
-    
+
     @Test
     public void toStringToimiiUseammallaKirjoittajalla() {
         kirjoittajat.add(new Kirjoittaja("Arto", "Vihavainen"));
-        
-        String tulos = "article: M. Luukkainen, A. Vihavainen: Matin Seikkailut - Julkaistu 2012"
-                        + " - Tunniste: ML2012";
+
+        String tulos = "ID: ML2012, article: M. Luukkainen, A. Vihavainen: Matin Seikkailut - Julkaistu 2012";
         assertEquals(tulos, a.toString());
     }
 }
