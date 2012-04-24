@@ -17,7 +17,9 @@ public class ViitePalveluTest {
     private Viitepalvelu viitepalveluA;
     private Viitepalvelu viitepalveluB;
     private Viitepalvelu viitepalveluC;
-    private Viitekirjanpito tallennusStub;
+    private Viitekirjanpito tallennusStubA;
+    private Viitekirjanpito tallennusStubB;
+    private Viitekirjanpito tallennusStubC;
     private Viite artikkeli;
     private Viite kirja;
     private Viite konf;
@@ -37,11 +39,13 @@ public class ViitePalveluTest {
     public void setUp() {        
         this.mockTallentaja = mock(Tiedostonkasittely.class);
         this.bibtex = new BibTexGeneraattori();        
-        this.tallennusStub = new Viitekirjanpito();
+        this.tallennusStubA = new Viitekirjanpito();
+        this.tallennusStubB = new Viitekirjanpito();
+        this.tallennusStubC = new Viitekirjanpito();
         
-        this.viitepalveluA = new Viitepalvelu(this.tallennusStub, this.bibtex, this.mockTallentaja);
-        this.viitepalveluB = new Viitepalvelu(this.tallennusStub, null, null);
-        this.viitepalveluC = new Viitepalvelu(this.tallennusStub, null, null);
+        this.viitepalveluA = new Viitepalvelu(this.tallennusStubA, this.bibtex, this.mockTallentaja);
+        this.viitepalveluB = new Viitepalvelu(this.tallennusStubB, null, null);
+        this.viitepalveluC = new Viitepalvelu(this.tallennusStubC, null, null);
 
         this.viitepalveluA.teeViite("article");
         this.viitepalveluA.lisaaViitteenYleisetTiedot("Otsikko", 2012);
@@ -129,7 +133,7 @@ public class ViitePalveluTest {
     public void viitteenTallennusToimii() {
         this.viitepalveluA.tallennaViite();
 
-        assertEquals(this.artikkeli, this.tallennusStub.getViitteet().get(0));
+        assertEquals(this.artikkeli, this.tallennusStubA.getViitteet().get(0));
     }
 
     @Test
@@ -227,5 +231,18 @@ public class ViitePalveluTest {
                 "\tyear = {2012},\n" +
                 "}\n")
                 , eq("tiedostonimi"));
+    }
+    
+    @Test
+    public void olemassaolevanViitteenPoistoPalauttaaTrue() {
+        this.viitepalveluA.lisaaViitteenTunniste("tunniste");
+        this.viitepalveluA.tallennaViite();
+        
+        assertTrue(this.viitepalveluA.poistaViite("tunniste"));
+    }
+    
+    @Test
+    public void puuttuvanViitteenPoistoPalauttaaFalse() {
+        assertFalse(this.viitepalveluA.poistaViite("tunniste"));
     }
 }
