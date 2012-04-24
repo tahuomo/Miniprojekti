@@ -31,19 +31,28 @@ public class Viitetietokanta implements Viitehallinta {
         EntityManager em = getEntityManager();
         return em.createQuery("SELECT v FROM Viite v").getResultList();
     }
-
+    
     @Override
     public Viite etsiTunniste(String tunniste) {
-        EntityManager em = getEntityManager();
+        return haeTunniste(tunniste, getEntityManager());
+    }
+
+    public Viite etsiTunniste(String tunniste, EntityManager em) {
+        return haeTunniste(tunniste, em);
+    }
+    
+    public Viite haeTunniste(String tunniste, EntityManager em) {
         try {
             return (Viite) em.createQuery(
                     "SELECT v FROM Viite v "
-                    + "WHERE v.tunniste LIKE :tunniste")
-                    .setParameter("tunniste", tunniste)
-                    .getSingleResult();
+                    + "WHERE v.tunniste LIKE :tunniste").setParameter("tunniste", tunniste).getSingleResult();
         } catch (Exception e) {
             return null;
         }
-        
+    }
+
+    @Override
+    public boolean poistaViite(String tunniste) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

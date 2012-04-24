@@ -2,6 +2,7 @@ package viitejarjestelma.tietosailio;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
 import viitejarjestelma.logiikka.Viite;
 
 public class Viitekirjanpito implements Viitehallinta {
@@ -30,5 +31,10 @@ public class Viitekirjanpito implements Viitehallinta {
 
     public List<Viite> getViitteet() {
         return viitteet;
+    }
+
+    @Override
+    public boolean poistaViite(String tunniste) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
