@@ -1,12 +1,8 @@
 package viitejarjestelma.logiikka;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
+@Entity
 public class Tagi {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
