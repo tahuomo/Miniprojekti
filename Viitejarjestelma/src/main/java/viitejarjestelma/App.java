@@ -4,7 +4,7 @@ import viitejarjestelma.logiikka.BibTexGeneraattori;
 import viitejarjestelma.io.Tiedostonkasittely;
 import viitejarjestelma.io.TiedostonKirjoittaja;
 import viitejarjestelma.logiikka.Viitepalvelu;
-import viitejarjestelma.tietokanta.Viitetietokanta;
+import viitejarjestelma.tietosailio.Viitetietokanta;
 import viitejarjestelma.io.KonsoliIO;
 import org.hsqldb.Server;
 

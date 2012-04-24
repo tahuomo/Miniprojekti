@@ -1,6 +1,6 @@
 package viitejarjestelma.logiikka;
 
-import viitejarjestelma.tietokanta.Viitehallinta;
+import viitejarjestelma.tietosailio.Viitehallinta;
 import java.util.List;
 import viitejarjestelma.io.Tiedostonkasittely;
 

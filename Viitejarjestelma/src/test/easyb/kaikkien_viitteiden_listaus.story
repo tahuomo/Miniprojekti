@@ -1,7 +1,7 @@
 import viitejarjestelma.*
 import viitejarjestelma.io.*
 import viitejarjestelma.logiikka.*
-import viitejarjestelma.tietokanta.*
+import viitejarjestelma.tietosailio.*
 
 description 'Kayttaja voi listata viitteet'
 

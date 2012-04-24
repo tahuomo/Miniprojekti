@@ -5,7 +5,7 @@ import viitejarjestelma.logiikka.BibTexGeneraattori;
 import viitejarjestelma.logiikka.Kirjoittaja;
 import viitejarjestelma.logiikka.Viitepalvelu;
 import viitejarjestelma.logiikka.Viite;
-import viitejarjestelma.tietokanta.Viitekirjanpito;
+import viitejarjestelma.tietosailio.Viitekirjanpito;
 import java.util.List;
 import org.junit.*;
 import static org.junit.Assert.*;
