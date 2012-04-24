@@ -61,14 +61,15 @@ public class Viite implements Serializable {
         @JoinColumn(name = "viite_id")},
     inverseJoinColumns = {
         @JoinColumn(name = "tagi_id")})
-    private List<Kirjoittaja> tagit;
+    private List<Tagi> tagit;
 
     public Viite() {
     }
 
     public Viite(String tyyppi) {
         this.tyyppi = tyyppi;
-        kirjoittajat = new ArrayList<Kirjoittaja>();
+        this.kirjoittajat = new ArrayList<Kirjoittaja>();
+        this.tagit = new ArrayList<Tagi>();
     }
 
     public String getTyyppi() {
