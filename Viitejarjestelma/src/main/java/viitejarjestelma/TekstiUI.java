@@ -162,7 +162,7 @@ public class TekstiUI {
 
     public void listaaViitteet() {
         io.tulosta("Anna hakuehto, esim. author=Vihavainen , tyhjä listaa kaikki");
-        io.tulosta("Haku tukee kenttiä: id, type, author, publisher, title");
+        io.tulosta("Haku tukee kenttiä: id, type, author, publisher, title, tag");
         String hakuehto = io.lueSyote("Hakuehto:", VALINNAINEN);
         String viitteet = vp.listaaViitteet(hakuehto);
         
