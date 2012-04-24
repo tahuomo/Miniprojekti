@@ -56,6 +56,12 @@ public class Viite implements Serializable {
     inverseJoinColumns = {
         @JoinColumn(name = "kirjoittaja_id")})
     private List<Kirjoittaja> kirjoittajat;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(joinColumns = {
+        @JoinColumn(name = "viite_id")},
+    inverseJoinColumns = {
+        @JoinColumn(name = "tagi_id")})
+    private List<Kirjoittaja> tagit;
 
     public Viite() {
     }
