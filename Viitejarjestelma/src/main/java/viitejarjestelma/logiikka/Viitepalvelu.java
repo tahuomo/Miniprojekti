@@ -82,6 +82,10 @@ public class Viitepalvelu {
     public Viite getViite() {
         return viite;
     }
+    
+    public boolean poistaViite(String tunniste) {
+        return viitehallinta.poistaViite(tunniste);
+    }
 
     public boolean tunnisteKelpaa(String tunniste) {
         if (viitehallinta.etsiTunniste(tunniste) == null) {

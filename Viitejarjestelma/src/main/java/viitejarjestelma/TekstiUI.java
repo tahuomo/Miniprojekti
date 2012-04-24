@@ -2,7 +2,6 @@ package viitejarjestelma;
 
 import viitejarjestelma.logiikka.Viitepalvelu;
 import viitejarjestelma.io.IO;
-import viitejarjestelma.io.IO;
 
 public class TekstiUI {
     private static boolean PAKOLLINEN = true;
@@ -33,6 +32,8 @@ public class TekstiUI {
                 listaaViitteet();
             } else if (komento.equals("bibtex")) {
                 kirjoitaBibtexTiedosto();
+            } else if (komento.equals("poista")) {
+                poistaViite();
             } else {
                 kerroKomennot();
             }
@@ -57,6 +58,15 @@ public class TekstiUI {
         vp.tallennaViite();
         io.tulosta("Uusi viite lisättiin!");
         io.tulosta("Lisättiin: " + vp.nykyinenViite());
+    }
+
+    public void poistaViite() {
+        String poistettava = io.lueSyote("Anna poistettavan viitteen tunniste: ", PAKOLLINEN);
+        if (vp.poistaViite(poistettava)) {
+            io.tulosta("Viite poistettiin!");
+        } else {
+            io.tulosta("Poistoa ei tehty, tarkista tunniste.");
+        }
     }
 
     public String kysyViitteenTyyppi() {
@@ -145,6 +155,7 @@ public class TekstiUI {
                 + "\tuusi\t- lisää uusi viite\n"
                 + "\tbibtex\t- tallenna viitteet bibtex-tiedostoon\n"
                 + "\tlistaa\t- listaa viitteet\n"
+                + "\tpoista\t- poista viite"
                 + "\tlopeta\t- lopeta ohjelma";
         io.tulosta(komennot);
     }
