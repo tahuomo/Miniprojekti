@@ -49,8 +49,8 @@ public class Viite implements Serializable {
     @Column
     private String painos;
     @Column
-    private String lisatieto;      
-    @OneToMany(cascade = CascadeType.MERGE)
+    private String lisatieto;
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(joinColumns = {
         @JoinColumn(name = "viite_id")},
     inverseJoinColumns = {
@@ -202,14 +202,14 @@ public class Viite implements Serializable {
     }
 
     public String toString() {
-        String palautus = tyyppi + ": ";
+        String palautus = "ID: " + tunniste + ", " + tyyppi + ": ";
         for (int i = 0; i < this.kirjoittajat.size(); i++) {
             palautus += this.kirjoittajat.get(i).toString();
             if (i < this.kirjoittajat.size() - 1) {
                 palautus += ", ";
             }
         }
-        palautus += ": " + otsikko + " - Julkaistu " + vuosi + " - Tunniste: " + tunniste;
+        palautus += ": " + otsikko + " - Julkaistu " + vuosi;
 
         return palautus;
     }
