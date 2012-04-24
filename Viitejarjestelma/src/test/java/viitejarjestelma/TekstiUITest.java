@@ -106,20 +106,20 @@ public class TekstiUITest {
      
      @Test
      public void listataanOlemattomatViitteet(){
-         when(mockvp.listaaViitteet()).thenReturn("");
+         when(mockvp.listaaViitteet(null)).thenReturn("");
          ui.listaaViitteet();
          
          verify(mockio).tulosta(eq("Ei vielä lisättyjä viitteitä"));
-         verify(mockvp).listaaViitteet();
+         verify(mockvp).listaaViitteet(null);
      }
      
      @Test
      public void listataanViitteet(){
-         when(mockvp.listaaViitteet()).thenReturn("jee jee");
+         when(mockvp.listaaViitteet(null)).thenReturn("jee jee");
          ui.listaaViitteet();
          
          verify(mockio).tulosta(eq("jee jee"));
-         verify(mockvp).listaaViitteet();
+         verify(mockvp).listaaViitteet(null);
      }
      
      @Test

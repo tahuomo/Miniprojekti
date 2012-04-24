@@ -161,8 +161,13 @@ public class TekstiUI {
     }
 
     public void listaaViitteet() {
+        io.tulosta("Anna hakuehto, esim. author=Vihavainen , tyhjä listaa kaikki");
+        io.tulosta("Haku tukee kenttiä: id, type, author, publisher, title");
+        String hakuehto = io.lueSyote("Hakuehto:", VALINNAINEN);
+        String viitteet = vp.listaaViitteet(hakuehto);
+        
         io.tulosta("\nViitteet:");
-        String viitteet = vp.listaaViitteet();
+        
         if (viitteet.isEmpty()) {
             io.tulosta("Ei vielä lisättyjä viitteitä");
         } else {
