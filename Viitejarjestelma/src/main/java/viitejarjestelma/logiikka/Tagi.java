@@ -1,9 +1,10 @@
 package viitejarjestelma.logiikka;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-public class Tagi {
+public class Tagi implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
