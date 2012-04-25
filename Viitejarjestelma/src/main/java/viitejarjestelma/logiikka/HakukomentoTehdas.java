@@ -13,6 +13,7 @@ public class HakukomentoTehdas {
         komennot.put("title", new HakuOtsikolla());
         komennot.put("id", new HakuTunnisteella());
         komennot.put("type", new HakuTyypilla());
+        komennot.put("tag", new HakuTagilla());
         komennot.put("tuntematon", new HakuTuntemattomalla());
     }
     
