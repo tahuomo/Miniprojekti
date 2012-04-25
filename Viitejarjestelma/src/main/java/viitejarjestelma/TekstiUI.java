@@ -15,7 +15,8 @@ public class TekstiUI {
     }
 
     public void run() {
-        io.tulosta("Viitehallinan Super Hyper 1337 Ohjelma");
+        io.tulosta("The Oldschool Viitehallinta: Kumiankka Edition");
+        io.tulosta("-----------------------------------------------");
         while (true) {
             String komento = io.lueSyote(">", VALINNAINEN);
             if (komento == null) {
@@ -154,7 +155,7 @@ public class TekstiUI {
         String komennot = "\tauta\t- näyttää komennot\n"
                 + "\tuusi\t- lisää uusi viite\n"
                 + "\tbibtex\t- tallenna viitteet bibtex-tiedostoon\n"
-                + "\tlistaa\t- listaa viitteet\n"
+                + "\tlistaa\t- listaa ja hae viitteitä\n"
                 + "\tpoista\t- poista viite\n"
                 + "\tlopeta\t- lopeta ohjelma";
         io.tulosta(komennot);
@@ -169,7 +170,7 @@ public class TekstiUI {
         io.tulosta("\nViitteet:");
         
         if (viitteet.isEmpty()) {
-            io.tulosta("Ei vielä lisättyjä viitteitä");
+            io.tulosta("Viitteitä ei löydetty annetuilla ehdoilla");
         } else {
             io.tulosta(viitteet);
         }
@@ -195,7 +196,7 @@ public class TekstiUI {
     public void kirjoitaBibtexTiedosto() {
         String tiedostonimi = io.lueSyote("Anna tiedostonimi, tyhjä tulostaa ruudulle:", VALINNAINEN);
         if (tiedostonimi == null) {
-            io.tulosta(vp.bibtexRuudulle());
+            io.tulosta("Bibtex:\n" + vp.bibtexRuudulle());
         } else {
             io.tulosta("Tulostetaan tiedostoon...");
             if (vp.bibtexTiedostoon(tiedostonimi)) {

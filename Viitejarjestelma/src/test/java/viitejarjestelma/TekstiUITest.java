@@ -96,7 +96,7 @@ public class TekstiUITest {
          String komennot = "\tauta\t- näyttää komennot\n"
                 + "\tuusi\t- lisää uusi viite\n"
                 + "\tbibtex\t- tallenna viitteet bibtex-tiedostoon\n"
-                + "\tlistaa\t- listaa viitteet\n"
+                + "\tlistaa\t- listaa ja hae viitteitä\n"
                 + "\tpoista\t- poista viite\n"
                 + "\tlopeta\t- lopeta ohjelma";
          
@@ -109,7 +109,7 @@ public class TekstiUITest {
          when(mockvp.listaaViitteet(null)).thenReturn("");
          ui.listaaViitteet();
          
-         verify(mockio).tulosta(eq("Ei vielä lisättyjä viitteitä"));
+         verify(mockio).tulosta(eq("Viitteitä ei löydetty annetuilla ehdoilla"));
          verify(mockvp).listaaViitteet(null);
      }
      
