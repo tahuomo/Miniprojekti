@@ -15,7 +15,7 @@ public class TekstiUI {
     }
 
     public void run() {
-        io.tulosta("The Oldschool Viitehallinta: Kumiankka Edition");
+        io.tulosta("\nThe Oldschool Viitehallinta: Kumiankka Edition");
         io.tulosta("-----------------------------------------------");
         while (true) {
             String komento = io.lueSyote(">", VALINNAINEN);
@@ -54,15 +54,17 @@ public class TekstiUI {
             kysyKirjanTiedot();
         }
         kysyValinnaisetTiedot();
-        kysyKirjoittajat();
+        kysyKirjoittajat();        
         kysyTunniste();
+        kysyTagit();
         vp.tallennaViite();
+        
         io.tulosta("Uusi viite lisättiin!");
         io.tulosta("Lisättiin: " + vp.nykyinenViite());
     }
 
     public void poistaViite() {
-        String poistettava = io.lueSyote("Anna poistettavan viitteen tunniste: ", PAKOLLINEN);
+        String poistettava = io.lueSyote("Anna poistettavan viitteen tunniste:", PAKOLLINEN);
         if (vp.poistaViite(poistettava)) {
             io.tulosta("Viite poistettiin!");
         } else {
@@ -150,6 +152,20 @@ public class TekstiUI {
             vp.lisaaKirjoittaja(etunimi, sukunimi);
         }
     }
+    
+    public void kysyTagit() {
+        io.tulosta("\nLisätään tagit, tyhjä lopettaa");
+        
+        while(true) {
+            String tagi = io.lueSyote("Tagi:", VALINNAINEN);
+            
+            if(tagi == null) {
+                break;
+            }
+            
+            vp.lisaaTagi(tagi);
+        }
+    }
 
     public void kerroKomennot() {
         String komennot = "\tauta\t- näyttää komennot\n"
@@ -162,7 +178,7 @@ public class TekstiUI {
     }
 
     public void listaaViitteet() {
-        io.tulosta("Anna hakuehto, esim. author=Vihavainen , tyhjä listaa kaikki");
+        io.tulosta("Anna hakuehto, esim. author=Vihavainen, tyhjä listaa kaikki");
         io.tulosta("Haku tukee kenttiä: id, type, author, publisher, title, tag");
         String hakuehto = io.lueSyote("Hakuehto:", VALINNAINEN);
         String viitteet = vp.listaaViitteet(hakuehto);

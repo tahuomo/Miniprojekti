@@ -63,6 +63,12 @@ public class Viitepalvelu {
         k.setViite(viite);
         viite.lisaaKirjoittaja(k);
     }
+    
+    public void lisaaTagi(String nimi) {
+        Tagi tagi = new Tagi(nimi);
+        tagi.setViite(viite);
+        viite.lisaaTagi(tagi);
+    }
 
     public void lisaaViitteenTunniste(String tunniste) {
         viite.setTunniste(tunniste);
