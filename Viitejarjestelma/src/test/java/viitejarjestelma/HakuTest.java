@@ -12,10 +12,12 @@ public class HakuTest {
     HakuNimella hakun;
     HakuOtsikolla hakuo;
     HakuTunnisteella hakut;
+    HakukomentoTehdas hkt;
     Viite v;
     Viite v2;
     List<Kirjoittaja> kirjoittajat;
     List<Viite> viitteet;
+    List<Tagi> tagit;
     
     public HakuTest() {
     }
@@ -30,20 +32,26 @@ public class HakuTest {
     
     @Before
     public void setUp() {
-        hakuj = new HakuJulkaisijalla();
-        hakun = new HakuNimella();
-        hakuo = new HakuOtsikolla();
-        hakut = new HakuTunnisteella();
+        hkt = new HakukomentoTehdas();
+//        hakuj = new HakuJulkaisijalla();
+//        hakun = new HakuNimella();
+//        hakuo = new HakuOtsikolla();
+//        hakut = new HakuTunnisteella();
         
         kirjoittajat = new ArrayList<Kirjoittaja>();
         kirjoittajat.add(new Kirjoittaja("Arto", "Vihavainen"));
         kirjoittajat.add(new Kirjoittaja("Matti", "Luukkainen"));
+        
+        tagit = new ArrayList<Tagi>();
+        tagit.add(new Tagi("hieno"));
+        
         
         v = new Viite("article");
         v.setJulkaisija("ACM");
         v.setTunniste("AABB20");
         v.setOtsikko("Testi otsikko on hieno otsikko");
         v.setKirjoittajat(kirjoittajat);
+        v.setTagit(tagit);
         
         v2 = new Viite("book");
         v2.setJulkaisija(null);
@@ -62,26 +70,36 @@ public class HakuTest {
     
      @Test
      public void tunnisteellaHakuLoytaa() {
-         assertEquals(1, hakut.suorita(viitteet, "AABB20").size());
+         assertEquals(1, hkt.hae("id").suorita(viitteet, "AABB20").size());
      }
      
      @Test
      public void otsikollaHakuLoytaa() {
-         assertEquals(1, hakuo.suorita(viitteet, "otsikko on").size());
+         assertEquals(1, hkt.hae("title").suorita(viitteet, "otsikko on").size());
      }
      
      @Test
      public void nimellaHakuLoytaa() {
-         assertEquals(1, hakun.suorita(viitteet, "vihavainen").size());
+         assertEquals(1, hkt.hae("author").suorita(viitteet, "vihavainen").size());
      }
      
      @Test
      public void julkaisijallaHakuLoytaa() {
-         assertEquals(1, hakuj.suorita(viitteet, "acm").size());
+         assertEquals(1, hkt.hae("publisher").suorita(viitteet, "acm").size());
      }
      
      @Test
      public void tyyppiHakuLoytaa() {
-         assertEquals(1, hakuj.suorita(viitteet, "acm").size());
+         assertEquals(1, hkt.hae("type").suorita(viitteet, "article").size());
+     }
+     
+     @Test
+     public void tuntematonHakuPalauttaKaikki() {
+         assertEquals(2, hkt.hae("asdfaf").suorita(viitteet, "acm").size());
+     }
+     
+     @Test
+     public void tagiHakuLoytaa() {
+         assertEquals(1, hkt.hae("tag").suorita(viitteet, "hieno").size());
      }
 }
