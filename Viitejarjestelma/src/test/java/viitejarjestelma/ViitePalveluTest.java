@@ -1,5 +1,6 @@
 package viitejarjestelma;
 
+import viitejarjestelma.logiikka.Tagi;
 import viitejarjestelma.io.Tiedostonkasittely;
 import viitejarjestelma.logiikka.BibTexGeneraattori;
 import viitejarjestelma.logiikka.Kirjoittaja;
@@ -51,6 +52,7 @@ public class ViitePalveluTest {
         this.viitepalveluA.lisaaViitteenYleisetTiedot("Otsikko", 2012);
         this.viitepalveluA.lisaaArtikkelinTiedot("Matin sanomat", 1, 2, 12, "ACM");
         this.viitepalveluA.lisaaKirjoittaja("Matti", "Luukkainen");
+        this.viitepalveluA.lisaaTagi("tagi");
 
         this.viitepalveluB.teeViite("book");
         this.viitepalveluB.lisaaViitteenYleisetTiedot("Otsikko", 2000);
@@ -127,6 +129,14 @@ public class ViitePalveluTest {
 
         assertTrue(k.size() == 1
                 && k.get(0).toString().equals("M. Luukkainen"));
+    }
+    
+    @Test
+    public void tagiLisataanOikein() {
+        List<Tagi> t = this.artikkeli.getTagit();
+        
+        assertTrue(t.size() == 1 &&
+                t.get(0).getNimi().equals("tagi"));
     }
 
     @Test
