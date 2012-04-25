@@ -208,6 +208,18 @@ public class Viite implements Serializable {
         this.tunniste = tunniste;
     }
 
+    public List<Tagi> getTagit() {
+        return tagit;
+    }
+
+    public void setTagit(List<Tagi> tagit) {
+        this.tagit = tagit;
+    }
+    
+    public void lisaaTagi(Tagi tagi){
+        this.tagit.add(tagi);
+    }
+
     public String toString() {
         String palautus = "ID: " + tunniste + ", " + tyyppi + ": ";
         for (int i = 0; i < this.kirjoittajat.size(); i++) {
