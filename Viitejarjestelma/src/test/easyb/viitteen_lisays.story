@@ -7,7 +7,7 @@ description 'Kayttaja voi lisata viitteen valideilla tiedoilla'
 
 scenario "kayttaja voi lisata artikkelin valideilla tiedoilla", {
     given 'komento "uusi" ja "1" valittu', {
-        io = new StubIO("uusi", "1", "Täydellinen", "2012", "Frontside Ollie", "1", "2", "4", "UVM", "", "", "Robin", "Packalen", "", "", "lopeta")
+        io = new StubIO("uusi", "1", "Täydellinen", "2012", "Frontside Ollie", "1", "2", "4", "UVM", "", "", "Robin", "Packalen", "", "", "", "lopeta")
         vk = new Viitekirjanpito()
         vp = new Viitepalvelu(vk, null, null)
         ui = new TekstiUI(io, vp)        
@@ -24,7 +24,7 @@ scenario "kayttaja voi lisata artikkelin valideilla tiedoilla", {
 
 scenario "kayttaja voi lisata konferenssijulkaisun valideilla tiedoilla", {
     given 'komento "uusi" ja "2" valittu', {
-        io = new StubIO("uusi", "2", "Otsikko", "2012", "Kirja", "Julkaisija", "Osoite", "Kirjasarja", "1", "5", "Organisaatio", "1", "Lisätieto", "Matti", "Luukkainen", "", "", "lopeta")
+        io = new StubIO("uusi", "2", "Otsikko", "2012", "Kirja", "Julkaisija", "Osoite", "Kirjasarja", "1", "5", "Organisaatio", "1", "Lisätieto", "Matti", "Luukkainen", "", "", "", "lopeta")
         vk = new Viitekirjanpito()
         vp = new Viitepalvelu(vk, null, null)
         ui = new TekstiUI(io, vp)        
@@ -41,7 +41,7 @@ scenario "kayttaja voi lisata konferenssijulkaisun valideilla tiedoilla", {
 
 scenario "kayttaja voi lisata kirjan valideilla tiedoilla", {
     given 'komento "uusi" ja "3" valittu', {
-        io = new StubIO("uusi", "3", "Otsikko", "2012", "Julkaisija", "Osoite", "Painos", "Sarja", "1", "Lisätieto", "Arto", "Vihavainen", "", "", "lopeta")
+        io = new StubIO("uusi", "3", "Otsikko", "2012", "Julkaisija", "Osoite", "Painos", "Sarja", "1", "Lisätieto", "Arto", "Vihavainen", "", "", "", "lopeta")
         vk = new Viitekirjanpito()
         vp = new Viitepalvelu(vk, null, null)
         ui = new TekstiUI(io, vp)        

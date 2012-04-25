@@ -10,7 +10,7 @@ scenario "tiedoston tallentaminen onnistuu", {
     given 'komento "bibtex" valittu', {   
         mockTallennus = mock(Tiedostonkasittely.class) 
         bibtex = new BibTexGeneraattori()
-        io = new StubIO("uusi", "1", "Otsikko", "2012", "Lehti", "", "", "", "", "", "", "Matti", "Luukkainen", "", "", "bibtex", "tiedostonimi", "lopeta")
+        io = new StubIO("uusi", "1", "Otsikko", "2012", "Lehti", "", "", "", "", "", "", "Matti", "Luukkainen", "", "", "", "bibtex", "tiedostonimi", "lopeta")
         vk = new Viitekirjanpito()
         vp = new Viitepalvelu(vk, bibtex, mockTallennus)
         ui = new TekstiUI(io, vp)
