@@ -111,6 +111,7 @@ public class Viitepalvelu {
         tunniste = tunniste.toUpperCase();
         tunniste = tunniste.replaceAll("Ä", "A");
         tunniste = tunniste.replaceAll("Ö", "O");
+        tunniste = tunniste.replaceAll("Å", "A");
         tunniste += viite.getVuosi();
 
         while (!tunnisteKelpaa(tunniste)) {
