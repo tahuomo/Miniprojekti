@@ -6,6 +6,8 @@ public class SkandienKorvaaja {
         teksti = teksti.replaceAll("ö", "\\\\\"{o}");
         teksti = teksti.replaceAll("Ä", "\\\\\"{A}");
         teksti = teksti.replaceAll("Ö", "\\\\\"{O}");
+        teksti = teksti.replaceAll("å", "\\\\aa");
+        teksti = teksti.replaceAll("Å", "\\\\AA");
         
         return teksti;
     }
