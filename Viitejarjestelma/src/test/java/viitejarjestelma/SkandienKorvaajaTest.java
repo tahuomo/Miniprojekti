@@ -48,4 +48,14 @@ public class SkandienKorvaajaTest {
     public void isoOOikein() {
         assertEquals(SkandienKorvaaja.skanditBibtexYstavallisiksi("MÖ"), "M\\\"{O}");
     }
+    
+    @Test
+    public void pikkuRuotsOOikein() {
+        assertEquals(SkandienKorvaaja.skanditBibtexYstavallisiksi("Må"), "M\\aa");
+    }
+    
+    @Test
+    public void isoRuotsOOikein() {
+        assertEquals(SkandienKorvaaja.skanditBibtexYstavallisiksi("MÅ"), "M\\AA");
+    }
 }
